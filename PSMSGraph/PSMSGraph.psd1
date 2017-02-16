@@ -20,7 +20,7 @@
 	ModuleToProcess = 'PSMSGraph.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '1.0.0.69'
+	ModuleVersion = '1.0.0.71'
 	
 	# ID used to uniquely identify this module
 	GUID = '15978dcc-d5ad-4024-ab2a-28bdf946ece7'

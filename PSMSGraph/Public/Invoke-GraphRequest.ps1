@@ -167,8 +167,13 @@ function Invoke-GraphRequest {
             return
         }
         Write-Verbose "Truncating Authorization header"
-        $Params['Headers']['Authorization'] = '{0}...{1}<truncated>' -f $Params.Headers.Authorization.Substring(0, 25),
-            $Params.Headers.Authorization.Substring(($Params.Headers.Authorization.Length - 11), 10)                
+        try {
+            $Params['Headers']['Authorization'] = '{0}...{1}<truncated>' -f $Params.Headers.Authorization.Substring(0, 25),
+            $Params.Headers.Authorization.Substring(($Params.Headers.Authorization.Length - 11), 10)
+        }
+        catch {
+            Write-Verbose "No Authorization header to truncate"
+        }        
         switch ($Result.Headers.'Content-Type') {
             { $_ -match 'application/json' } {
                 Write-Verbose "Converting result from JSON to PSObject"
@@ -180,7 +185,10 @@ function Invoke-GraphRequest {
                 [xml]$ConentObject = $Result.Content
                 break
             }
-            default { $ConentObject = $Result.Content}
+            default {
+                Write-Verbose "Unhandled Content-Type. ContentObject will be raw."
+                $ConentObject = $Result.Content
+            }
         }        
         Write-Verbose "Setting LastRequestDate on Access Token"
         $AccessToken.LastRequestDate = $RequestedDate
