@@ -1,0 +1,7 @@
+# PowerShell Studio Build Files
+*.psprojs
+*.psbuild
+*.preview.ps1
+*.run.ps1
+*.temppoint.*
+*.RestorePoint.*
