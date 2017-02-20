@@ -1,4 +1,5 @@
 # PowerShell Studio Build Files
+*.psproj
 *.psprojs
 *.psbuild
 *.preview.ps1
