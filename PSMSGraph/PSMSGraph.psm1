@@ -26,7 +26,7 @@ Foreach ($Type in $Types) {
         Write-Verbose "-Adding Default Property Set"
         $Params = @{
             TypeName = $Type.Name
-            DefaultDisplayPropertySet = $ObjectProperty.DefaultDisplayPropertySet
+            DefaultDisplayPropertySet = $Type.DefaultDisplayPropertySet
             ErrorAction = 'SilentlyContinue'
         }
         Update-TypeData @Params
