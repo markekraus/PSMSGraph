@@ -162,8 +162,14 @@ function Invoke-GraphRequest {
             $ReceivedDate = Get-Date
         }
         catch {
-            $ErrorMessage = "Unable to query Uri '{0}: {1}" -f $Uri, $_.Exception.Message
-            Write-Error $ErrorMessage
+            $response = $_.Exception.Response
+            $Stream = $response.GetResponseStream()
+            $Stream.Position = 0
+            $StreamReader = New-Object System.IO.StreamReader $Stream
+            $ResponseBody = $StreamReader.ReadToEnd()
+            $ErrorMessage = "Unable to query Uri '{0}': {1}: {2}" -f $Uri, $_.Exception.Message, $ResponseBody
+            Set-Variable -Scope global -Name _invokeGraphRequestException -Value $_
+            Write-Error -message $ErrorMessage -Exception $_.Exception
             return
         }
         Write-Verbose "Truncating Authorization header"
