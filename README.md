@@ -12,6 +12,7 @@ This module is an API wrapper. It seeks to take the "foreign" concepts of REST a
 
 ### Features
 
+* In-memory and at-rest security of the Access Token, Refresh Token, and Client Secret. These are all stored in memory as secure strings and are only made plain-text on demand when needed. When exported, they are don so with CLI XML.
 * Extensible type system allow for piping between Functions similar to Active Directory or Exchange cmdlets
 * Easy OAuth authorization process with a WinForms authentication popup
 * No "mystery DLL's" required. The entire OAuth authorization, token request and token refresh process is written in pure PowerShell
