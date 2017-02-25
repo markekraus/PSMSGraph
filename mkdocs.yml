@@ -1,0 +1,5 @@
+site_name: PowerShell Module for the Microsoft Graph API
+repo_url: https://github.com/markekraus/PSMSGraph
+theme: readthedocs
+pages:
+- Home: index.md

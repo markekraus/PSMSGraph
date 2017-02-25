@@ -1,4 +1,4 @@
-﻿<#	
+<#	
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/8/2017 7:14 AM
@@ -20,7 +20,7 @@
 	ModuleToProcess = 'PSMSGraph.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '1.0.1.0'
+	ModuleVersion = '1.0.2.0'
 	
 	# ID used to uniquely identify this module
 	GUID = '15978dcc-d5ad-4024-ab2a-28bdf946ece7'
@@ -107,34 +107,7 @@
     )
 	
 	# Functions to export from this module
-    FunctionsToExport = @(
-        #Application
-        'New-GraphApplication'
-        'Export-GraphApplication'
-        'Import-GraphApplication'
-        #OAuth
-        'Get-GraphOauthAuthorizationCode'
-        'Get-GraphOauthAccessToken'
-        'Export-GraphOauthAccessToken'
-        'New-GraphOauthAccessToken'
-        'Import-GraphOauthAccessToken'
-        'Update-GraphOauthAccessToken'
-        #API
-        'Invoke-GraphRequest'
-        #Azure AD
-        'Get-AADUserByID'
-        'Get-AADUserByUserPrincipalName'
-        'Get-AADServicePrinicpalbyId'
-        'Get-AADServicePrinicpalbyDisplayName'
-        'Get-AADServicePrincipalAppRoleAssignedTo'
-        'Remove-AADAppRoleAssignment'
-        'Add-AADAppRoleAssignment'
-        'Get-AADUserAppRoleAssignment'
-        'Get-AADGroupById'
-        'Get-AADGroupMembers'
-        'Get-AADGroupByDisplayName'
-        'Get-AADUserAll'
-    )
+    FunctionsToExport = @('Add-AADAppRoleAssignment','Export-GraphApplication','Export-GraphOauthAccessToken','Get-AADGroupByDisplayName','Get-AADGroupById','Get-AADGroupMembers','Get-AADServicePrincipalAppRoleAssignedTo','Get-AADServicePrinicpalbyDisplayName','Get-AADServicePrinicpalbyId','Get-AADUserAll','Get-AADUserAppRoleAssignment','Get-AADUserByID','Get-AADUserByUserPrincipalName','Get-GraphOauthAccessToken','Get-GraphOauthAuthorizationCode','Import-GraphApplication','Import-GraphOauthAccessToken','Invoke-GraphRequest','New-GraphApplication','New-GraphOauthAccessToken','Remove-AADAppRoleAssignment','Update-GraphOauthAccessToken')
 	
 	# Cmdlets to export from this module
 	CmdletsToExport = '*' 
@@ -189,3 +162,4 @@
 		
 	} # End of PrivateData hashtable
 }
+
