@@ -62,7 +62,7 @@ $GraphAccessToken = $AuthCode | Get-GraphOauthAccessToken -Resource 'https://gra
 $GraphAccessToken | Export-GraphOAuthAccessToken -Path 'c:\MyGraphApp\AccessToken.XML'
 ```
 
-## Build a script to pull in all Azure AD users
+### Build a script to pull in all Azure AD users
 ```powershell
 Import-Module PSMSGraph
 $GraphAccessToken =  Import-GraphOAuthAccessToken -Path 'c:\MyGraphApp\AccessToken.XML'
