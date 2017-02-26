@@ -1,61 +1,100 @@
-﻿# Get-GraphOauthAuthorizationCode
+# Get-GraphOauthAuthorizationCode
+
 ## SYNOPSIS
 Retrieves an OAuth Authorization code form Microsoft
+
 ## SYNTAX
-```powershell
-Get-GraphOauthAuthorizationCode [-Application] <Object> [[-BaseURL] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+
 ```
+Get-GraphOauthAuthorizationCode [-Application] <Object> [[-BaseURL] <String>] [-WhatIf] [-Confirm]
+```
+
 ## DESCRIPTION
-Retrieves an OAuth Authorization code form Microsoft for a given Graph Application. This commandlet requires an interactive session as you will need to provide your credentials and authorize the Graph Application. The OAuth Authorization code will be used to obtain an OAuth Access Token.
+Retrieves an OAuth Authorization code form Microsoft for a given Graph Application.
+This commandlet requires an interactive session as you will need to provide your credentials and authorize the Graph Application.
+The OAuth Authorization code will be used to obtain an OAuth Access Token.
+
+## EXAMPLES
+
+### -------------------------- EXAMPLE 1 --------------------------
+```
+$GraphAuthCode = Get-GraphOauthAuthorizationCode -Application $GraphApp
+```
+
 ## PARAMETERS
-### -Application &lt;Object&gt;
+
+### -Application
 MSGraphAPI.Application object (See New-GraphApplication)
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases: App
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
 ```
-Required?                    true
-Position?                    1
-Default value
-Accept pipeline input?       true (ByValue, ByPropertyName)
-Accept wildcard characters?  false
-```
-### -BaseURL &lt;String&gt;
-The base URL for obtaining an OAuth Authorization Code form Microsoft. This is provided in the event that a different URL is required. The default is 
+
+### -BaseURL
+The base URL for obtaining an OAuth Authorization Code form Microsoft.
+This is provided in the event that a different URL is required.
+The default is 
 
     https://login.microsoftonline.com/common/oauth2/authorize
-```
-Required?                    false
-Position?                    2
-Default value                https://login.microsoftonline.com/common/oauth2/authorize
-Accept pipeline input?       true (ByPropertyName)
-Accept wildcard characters?  false
-```
-### -WhatIf &lt;SwitchParameter&gt;
 
-```
-Required?                    false
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
-```
-### -Confirm &lt;SwitchParameter&gt;
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: URL
 
+Required: False
+Position: 2
+Default value: Https://login.microsoftonline.com/common/oauth2/authorize
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
 ```
-Required?                    false
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
 ```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ## INPUTS
 
 ## OUTPUTS
-MSGraphAPI.Oauth.AuthorizationCode
+
+### MSGraphAPI.Oauth.AuthorizationCode
+
 ## NOTES
 
-## EXAMPLES
-### EXAMPLE 1
-```powershell
-PS C:\>$GraphAuthCode = Get-GraphOauthAuthorizationCode -Application $GraphApp
-```
-
+## RELATED LINKS
 

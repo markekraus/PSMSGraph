@@ -85,7 +85,27 @@ Task Build -Depends Test {
     Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $version
 }
 
-Task Deploy -Depends Build {
+Task BuildDocs -depends Build {
+    $lines
+    $YMLtext = (Get-Content "$ProjectRoot\header-mkdocs.yml") -join "`r`n"
+    $YMLText = "$YMLtext`r`n  - Functions:`r`n"
+    $Params = @{
+            Module = $ENV:BHProjectName
+            Force = $true
+            OutputFolder = "$ProjectRoot\docs\"
+            NoMetadata = $true
+    }
+    New-MarkdownHelp @params | foreach-object {
+        $NewName = "Function-$($_.Name)"
+        $Destination = Join-Path $_.DirectoryName $NewName
+        $Function = $_.Name -replace '\.md', ''
+        $YMLText = "{0}    - {1}: {2}`r`n" -f $YMLText, $Function, $NewName
+        Move-Item $_.FullName  $Destination -Force
+    }
+    $YMLtext | Set-Content -Path "$ProjectRoot\mkdocs.yml"
+}
+
+Task Deploy -Depends BuildDocs {
     $lines
     
     # Gate deployment

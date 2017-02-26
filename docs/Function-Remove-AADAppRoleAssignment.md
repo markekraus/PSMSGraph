@@ -1,69 +1,115 @@
-﻿# Remove-AADAppRoleAssignment
+# Remove-AADAppRoleAssignment
+
 ## SYNOPSIS
 Removes an App Role Assignment
+
 ## SYNTAX
-```powershell
-Remove-AADAppRoleAssignment [-AppRoleAssignment] <Object[]> [[-BaseUrl] <String>] [[-APIVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+
 ```
+Remove-AADAppRoleAssignment [-AppRoleAssignment] <Object[]> [[-BaseUrl] <String>] [[-APIVersion] <String>]
+ [-WhatIf] [-Confirm]
+```
+
 ## DESCRIPTION
-Removes an App Role Assignment. This can be used to remove a users access to an Azure AD SaaS Application (Service Principal)
+Removes an App Role Assignment.
+This can be used to remove a users access to an Azure AD SaaS Application (Service Principal)
+
+## EXAMPLES
+
+### -------------------------- EXAMPLE 1 --------------------------
+```
+$Results = $AADAppAssignments | Remove-AADAppRoleAssignment
+```
+
 ## PARAMETERS
-### -AppRoleAssignment &lt;Object[]&gt;
+
+### -AppRoleAssignment
 MSGraphAPI.DirectoryObject.AppRoleAssignment object
+
+```yaml
+Type: Object[]
+Parameter Sets: (All)
+Aliases: 
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
 ```
-Required?                    true
-Position?                    1
-Default value
-Accept pipeline input?       true (ByValue, ByPropertyName)
-Accept wildcard characters?  false
-```
-### -BaseUrl &lt;String&gt;
-The Azure AD Graph Base URL. This is not required. Deafult
+
+### -BaseUrl
+The Azure AD Graph Base URL.
+This is not required.
+Deafult
      https://graph.windows.net
-```
-Required?                    false
-Position?                    2
-Default value                https://graph.windows.net
-Accept pipeline input?       true (ByPropertyName)
-Accept wildcard characters?  false
-```
-### -APIVersion &lt;String&gt;
-version og the API to use. Default is 1.6
-```
-Required?                    false
-Position?                    3
-Default value                1.6
-Accept pipeline input?       true (ByPropertyName)
-Accept wildcard characters?  false
-```
-### -WhatIf &lt;SwitchParameter&gt;
 
-```
-Required?                    false
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
-```
-### -Confirm &lt;SwitchParameter&gt;
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
 
+Required: False
+Position: 2
+Default value: Https://graph.windows.net
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
 ```
-Required?                    false
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
+
+### -APIVersion
+version og the API to use.
+Default is 1.6
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: 3
+Default value: 1.6
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
 ```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ## INPUTS
 
 ## OUTPUTS
-MSGraphAPI.RequestResult
+
+### MSGraphAPI.RequestResult
+
 ## NOTES
 
-## EXAMPLES
-### EXAMPLE 1
-```powershell
-PS C:\>$Results = $AADAppAssignments | Remove-AADAppRoleAssignment
-```
-
+## RELATED LINKS
 

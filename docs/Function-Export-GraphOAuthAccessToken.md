@@ -1,37 +1,70 @@
-﻿# Export-GraphOAuthAccessToken
+# Export-GraphOAuthAccessToken
+
 ## SYNOPSIS
 Exports a Graph OAuth Access Token object to a file.
+
 ## SYNTAX
-```powershell
-Export-GraphOAuthAccessToken -Path <String> [-Encoding <String>] -AccessToken <PSObject> [-WhatIf] [-Confirm] [<CommonParameters>]
 
-
-
-Export-GraphOAuthAccessToken -LiterlPath <String> [-Encoding <String>] -AccessToken <PSObject> [-WhatIf] [-Confirm] [<CommonParameters>]
+### Path (Default)
 ```
+Export-GraphOAuthAccessToken -Path <String> [-Encoding <String>] -AccessToken <PSObject> [-WhatIf] [-Confirm]
+```
+
+### LiteralPath
+```
+Export-GraphOAuthAccessToken -LiterlPath <String> [-Encoding <String>] -AccessToken <PSObject> [-WhatIf]
+ [-Confirm]
+```
+
 ## DESCRIPTION
 Used to Export a Graph OAuth Access Token object to a file so it can later be imported.
+
+## EXAMPLES
+
+### -------------------------- EXAMPLE 1 --------------------------
+```
+$GraphAccessToken | Export-GraphOAuthAccessToken -Path 'c:\GraphAccessToken.xml'
+```
+
 ## PARAMETERS
-### -Path &lt;String&gt;
+
+### -Path
 Specifies the path to the file where the XML representation of the Graph AccessToken object will be stored
+
+```yaml
+Type: String
+Parameter Sets: Path
+Aliases: 
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
 ```
-Required?                    true
-Position?                    named
-Default value
-Accept pipeline input?       true (ByPropertyName)
-Accept wildcard characters?  false
+
+### -LiterlPath
+Specifies the path to the file where the XML representation of the Graph AccessToken object will be stored.
+Unlike Path, the value of the LiteralPath parameter is used exactly as it is typed.
+No characters are interpreted as wildcards.
+If the path includes escape characters, enclose it in single quotation marks.
+Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.
+
+```yaml
+Type: String
+Parameter Sets: LiteralPath
+Aliases: 
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
 ```
-### -LiterlPath &lt;String&gt;
-Specifies the path to the file where the XML representation of the Graph AccessToken object will be stored. Unlike Path, the value of the LiteralPath parameter is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.
-```
-Required?                    true
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
-```
-### -Encoding &lt;String&gt;
-Specifies the type of encoding for the target file. The acceptable values for this parameter are:
+
+### -Encoding
+Specifies the type of encoding for the target file.
+The acceptable values for this parameter are:
 
 -- ASCII
 -- UTF8
@@ -43,50 +76,78 @@ Specifies the type of encoding for the target file. The acceptable values for th
 -- OEM
 
 The default value is Unicode.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: Unicode
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
 ```
-Required?                    false
-Position?                    named
-Default value                Unicode
-Accept pipeline input?       true (ByPropertyName)
-Accept wildcard characters?  false
-```
-### -AccessToken &lt;PSObject&gt;
+
+### -AccessToken
 Graph OAuth Acess Token Object to be exported.
-```
-Required?                    true
-Position?                    named
-Default value
-Accept pipeline input?       true (ByValue, ByPropertyName)
-Accept wildcard characters?  false
-```
-### -WhatIf &lt;SwitchParameter&gt;
 
-```
-Required?                    false
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
-```
-### -Confirm &lt;SwitchParameter&gt;
+```yaml
+Type: PSObject
+Parameter Sets: (All)
+Aliases: Token
 
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
 ```
-Required?                    false
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
 ```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ## INPUTS
 
 ## OUTPUTS
-System.IO.FileInfo, System.IO.FileInfo
+
+### System.IO.FileInfo, System.IO.FileInfo
+
 ## NOTES
+This is an Export-Clixml wrapper.
+See Import-GraphOauthAccessToken for importing exported Graph AccessToken Objects
+See Get-GraphOauthAccessToken for obtaining a Graph AccessToken Objects
 
-## EXAMPLES
-### EXAMPLE 1
-```powershell
-PS C:\>$GraphAccessToken | Export-GraphOAuthAccessToken -Path 'c:\GraphAccessToken.xml'
-```
+## RELATED LINKS
 
+[Import-GraphOauthAccessToken
+Get-GraphOauthAccessToken]()
 

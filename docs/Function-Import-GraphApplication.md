@@ -1,63 +1,109 @@
-﻿# Import-GraphApplication
+# Import-GraphApplication
+
 ## SYNOPSIS
 Imports an exported Graph Application Object
+
 ## SYNTAX
-```powershell
-Import-GraphApplication -Path <String[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 
-
-
-Import-GraphApplication -LiteralPath <String[]> [-WhatIf] [-Confirm] [<CommonParameters>]
+### Path (Default)
 ```
+Import-GraphApplication -Path <String[]> [-WhatIf] [-Confirm]
+```
+
+### LiteralPath
+```
+Import-GraphApplication -LiteralPath <String[]> [-WhatIf] [-Confirm]
+```
+
 ## DESCRIPTION
 Imports an exported Graph Application Object and retruns a Graph Application Object.
+
+## EXAMPLES
+
+### -------------------------- EXAMPLE 1 --------------------------
+```
+$GraphApp = Import-GraphApplication -Path 'c:\GraphApp.xml'
+```
+
 ## PARAMETERS
-### -Path &lt;String[]&gt;
+
+### -Path
 Specifies the XML files where the Graph Application Object was exported.
-```
-Required?                    true
-Position?                    named
-Default value
-Accept pipeline input?       true (ByValue, ByPropertyName)
-Accept wildcard characters?  false
-```
-### -LiteralPath &lt;String[]&gt;
-Specifies the XML files where the Graph Application Object was exported. Unlike Path, the value of the LiteralPath parameter is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.
-```
-Required?                    true
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
-```
-### -WhatIf &lt;SwitchParameter&gt;
 
-```
-Required?                    false
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
-```
-### -Confirm &lt;SwitchParameter&gt;
+```yaml
+Type: String[]
+Parameter Sets: Path
+Aliases: 
 
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
 ```
-Required?                    false
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
+
+### -LiteralPath
+Specifies the XML files where the Graph Application Object was exported.
+Unlike Path, the value of the LiteralPath parameter is used exactly as it is typed.
+No characters are interpreted as wildcards.
+If the path includes escape characters, enclose it in single quotation marks.
+Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.
+
+```yaml
+Type: String[]
+Parameter Sets: LiteralPath
+Aliases: 
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
 ```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ## INPUTS
 
 ## OUTPUTS
-MSGraphAPI.Application
+
+### MSGraphAPI.Application
+
 ## NOTES
+See Export-GraphApplication for exporting Graph Application Objects
+See New-GraphApplication for creating new Graph Application Objects
 
-## EXAMPLES
-### EXAMPLE 1
-```powershell
-PS C:\>$GraphApp = Import-GraphApplication -Path 'c:\GraphApp.xml'
-```
+## RELATED LINKS
 
+[Export-GraphApplication
+New-GraphApplication]()
 

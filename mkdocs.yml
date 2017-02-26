@@ -1,5 +1,6 @@
 site_name: PowerShell Module for the Microsoft Graph API
 repo_url: https://github.com/markekraus/PSMSGraph
+site_author: Mark Kraus
 theme: readthedocs
 pages:
   - Home: index.md
@@ -26,3 +27,4 @@ pages:
     - New-GraphOauthAccessToken: Function-New-GraphOauthAccessToken.md
     - Remove-AADAppRoleAssignment: Function-Remove-AADAppRoleAssignment.md
     - Update-GraphOAuthAccessToken: Function-Update-GraphOAuthAccessToken.md
+

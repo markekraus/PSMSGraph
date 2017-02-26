@@ -1,78 +1,129 @@
-﻿# Get-AADUserByUserPrincipalName
+# Get-AADUserByUserPrincipalName
+
 ## SYNOPSIS
 Retrieves an Azure AD User by their UserPrincipalName
+
 ## SYNTAX
-```powershell
-Get-AADUserByUserPrincipalName [-AccessToken] <Object> [-UserPrincipalName] <String[]> [[-BaseUrl] <String>] [[-APIversion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+
 ```
+Get-AADUserByUserPrincipalName [-AccessToken] <Object> [-UserPrincipalName] <String[]> [[-BaseUrl] <String>]
+ [[-APIversion] <String>] [-WhatIf] [-Confirm]
+```
+
 ## DESCRIPTION
 Retrieves an Azure AD User by their UserPrincipalName
+
+## EXAMPLES
+
+### -------------------------- EXAMPLE 1 --------------------------
+```
+$AADUser = Get-AADUserByID -AccessToken $GraphAccessToken -UserPrincipalName bob.testerton@adatum.com
+```
+
 ## PARAMETERS
-### -AccessToken &lt;Object&gt;
+
+### -AccessToken
 MSGraphAPI.Oauth.AccessToken object obtained from Get-GraphOauthAccessToken.
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases: 
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
 ```
-Required?                    true
-Position?                    1
-Default value
-Accept pipeline input?       true (ByPropertyName)
-Accept wildcard characters?  false
-```
-### -UserPrincipalName &lt;String[]&gt;
+
+### -UserPrincipalName
 The user's UserPrincipalName e.g bob.testerton@adatum.com
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases: 
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
 ```
-Required?                    true
-Position?                    2
-Default value
-Accept pipeline input?       true (ByValue, ByPropertyName)
-Accept wildcard characters?  false
-```
-### -BaseUrl &lt;String&gt;
-The Azure AD Graph Base URL. This is not required. Deafult 
+
+### -BaseUrl
+The Azure AD Graph Base URL.
+This is not required.
+Deafult 
     https://graph.windows.net
-```
-Required?                    false
-Position?                    3
-Default value                https://graph.windows.net
-Accept pipeline input?       true (ByPropertyName)
-Accept wildcard characters?  false
-```
-### -APIversion &lt;String&gt;
-version og the API to use. Default is 1.6
-```
-Required?                    false
-Position?                    4
-Default value                1.6
-Accept pipeline input?       true (ByPropertyName)
-Accept wildcard characters?  false
-```
-### -WhatIf &lt;SwitchParameter&gt;
 
-```
-Required?                    false
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
-```
-### -Confirm &lt;SwitchParameter&gt;
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
 
+Required: False
+Position: 3
+Default value: Https://graph.windows.net
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
 ```
-Required?                    false
-Position?                    named
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
+
+### -APIversion
+version og the API to use.
+Default is 1.6
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: 4
+Default value: 1.6
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
 ```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ## INPUTS
 
 ## OUTPUTS
-MSGraphAPI.DirectoryObject.User
+
+### MSGraphAPI.DirectoryObject.User
+
 ## NOTES
 
-## EXAMPLES
-### EXAMPLE 1
-```powershell
-PS C:\>$AADUser = Get-AADUserByID -AccessToken $GraphAccessToken -UserPrincipalName bob.testerton@adatum.com
-```
-
+## RELATED LINKS
 
