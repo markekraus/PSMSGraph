@@ -97,10 +97,11 @@ Task BuildDocs -depends Build {
     $YMLtext = (Get-Content "$ProjectRoot\header-mkdocs.yml") -join "`r`n"
     $YMLText = "$YMLtext`r`n  - Functions:`r`n"
     $Params = @{
-            Module = $ENV:BHProjectName
-            Force = $true
-            OutputFolder = "$ProjectRoot\docs\"
-            NoMetadata = $true
+        Module = $ENV:BHProjectName
+        Force = $true
+        OutputFolder = "$ProjectRoot\docs\"
+        NoMetadata = $true
+        ErrorAction = 'SilentlyContinue'
     }
     $Params
     New-MarkdownHelp @params | foreach-object {
