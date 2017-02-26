@@ -2,4 +2,27 @@ site_name: PowerShell Module for the Microsoft Graph API
 repo_url: https://github.com/markekraus/PSMSGraph
 theme: readthedocs
 pages:
-- Home: index.md
+  - Home: index.md
+  - Functions:
+    - Add-AADAppRoleAssignment: Function-Add-AADAppRoleAssignment.md
+    - Export-GraphApplication: Function-Export-GraphApplication.md
+    - Export-GraphOAuthAccessToken: Function-Export-GraphOAuthAccessToken.md
+    - Get-AADGroupByDisplayName: Function-Get-AADGroupByDisplayName.md
+    - Get-AADGroupByID: Function-Get-AADGroupByID.md
+    - Get-AADGroupMembers: Function-Get-AADGroupMembers.md
+    - Get-AADServicePrincipalAppRoleAssignedTo: Function-Get-AADServicePrincipalAppRoleAssignedTo.md
+    - Get-AADServicePrinicpalbyDisplayName: Function-Get-AADServicePrinicpalbyDisplayName.md
+    - Get-AADServicePrinicpalbyId: Function-Get-AADServicePrinicpalbyId.md
+    - Get-AADUserAll: Function-Get-AADUserAll.md
+    - Get-AADUserAppRoleAssignment: Function-Get-AADUserAppRoleAssignment.md
+    - Get-AADUserByID: Function-Get-AADUserByID.md
+    - Get-AADUserByUserPrincipalName: Function-Get-AADUserByUserPrincipalName.md
+    - Get-GraphOauthAccessToken: Function-Get-GraphOauthAccessToken.md
+    - Get-GraphOauthAuthorizationCode: Function-Get-GraphOauthAuthorizationCode.md
+    - Import-GraphApplication: Function-Import-GraphApplication.md
+    - Import-GraphOAuthAccessToken: Function-Import-GraphOAuthAccessToken.md
+    - Invoke-GraphRequest: Function-Invoke-GraphRequest.md
+    - New-GraphApplication: Function-New-GraphApplication.md
+    - New-GraphOauthAccessToken: Function-New-GraphOauthAccessToken.md
+    - Remove-AADAppRoleAssignment: Function-Remove-AADAppRoleAssignment.md
+    - Update-GraphOAuthAccessToken: Function-Update-GraphOAuthAccessToken.md
