@@ -18,7 +18,7 @@
     .DESCRIPTION
         Returns the members for the given Group
     
-    .PARAMETER User
+    .PARAMETER Group
         A MSGraphAPI.DirectoryObject.Group object retruned by Get-AADGroup* cmdlets
     
     .PARAMETER BaseURL
