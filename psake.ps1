@@ -87,6 +87,9 @@ Task Build -Depends Test {
 
 Task BuildDocs -depends Build {
     $lines
+    $moduleRoot = Split-Path (Resolve-Path "$projectRoot\*\*.psd1")
+    $moduleName = Split-Path $moduleRoot -Leaf    
+    Import-Module (Join-Path $moduleRoot "$moduleName.psd1") -force
     $YMLtext = (Get-Content "$ProjectRoot\header-mkdocs.yml") -join "`r`n"
     $YMLText = "$YMLtext`r`n  - Functions:`r`n"
     $Params = @{
