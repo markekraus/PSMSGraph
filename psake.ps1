@@ -87,9 +87,12 @@ Task Build -Depends Test {
 
 Task BuildDocs -depends Build {
     $lines
-    $moduleRoot = Split-Path (Resolve-Path "$projectRoot\*\*.psd1")
-    $moduleName = Split-Path $moduleRoot -Leaf    
-    Import-Module (Join-Path $moduleRoot "$moduleName.psd1") -force
+    $moduleRoot = Split-Path (Resolve-Path "$ProjectRoot\*\*.psd1")
+    $moduleName = Split-Path $moduleRoot -Leaf
+    $psd1 = Join-Path $moduleRoot "$moduleName.psd1"
+    Write-Host "Loading Module from $psd1"
+    Remove-Module $ENV:BHProjectName -Force -ea SilentlyContinue
+    Import-Module $psd1 -force
     $YMLtext = (Get-Content "$ProjectRoot\header-mkdocs.yml") -join "`r`n"
     $YMLText = "$YMLtext`r`n  - Functions:`r`n"
     $Params = @{
@@ -98,12 +101,13 @@ Task BuildDocs -depends Build {
             OutputFolder = "$ProjectRoot\docs\"
             NoMetadata = $true
     }
+    $Params
     New-MarkdownHelp @params | foreach-object {
         $NewName = "Function-$($_.Name)"
         $Destination = Join-Path $_.DirectoryName $NewName
         $Function = $_.Name -replace '\.md', ''
         $YMLText = "{0}    - {1}: {2}`r`n" -f $YMLText, $Function, $NewName
-        Move-Item $_.FullName  $Destination -Force
+        Move-Item $_.FullName  $Destination -Force -PassThru
     }
     $YMLtext | Set-Content -Path "$ProjectRoot\mkdocs.yml"
 }
