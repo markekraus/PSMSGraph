@@ -3,7 +3,7 @@ repo_url: https://github.com/markekraus/PSMSGraph
 site_author: Mark Kraus
 edit_uri: edit/master/docs/
 theme_dir: docs/Themes/psinder
-copyright: "Cinder is licensed under the <a href='https://github.com/markekraus/PSMSGraph/raw/master/LICENSE'>MIT license"
+copyright: "PSMSGraph is licensed under the <a href='https://github.com/markekraus/PSMSGraph/raw/master/LICENSE'>MIT license"
 pages:
   - Home: index.md
   - Functions:

@@ -20,7 +20,7 @@
 	ModuleToProcess = 'PSMSGraph.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '1.0.9.0'
+	ModuleVersion = '1.0.10.0'
 	
 	# ID used to uniquely identify this module
 	GUID = '15978dcc-d5ad-4024-ab2a-28bdf946ece7'
@@ -162,6 +162,8 @@
 		
 	} # End of PrivateData hashtable
 }
+
+
 
 
 
