@@ -81,8 +81,7 @@ function Get-GraphOauthAuthorizationCode {
         }
         $Web = New-Object @Params
         $DocumentCompleted_Script = {
-            $Global:MSGraphAPICurrentUri = $web.Url.AbsoluteUri
-            if ($Global:MSGraphAPICurrentUri -match "error=[^&]*|code=[^&]*") {
+            if ($web.Url.AbsoluteUri -match "error=[^&]*|code=[^&]*") {
                 $form.Close()
             }
         }
