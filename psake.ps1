@@ -87,31 +87,41 @@ Task Build -Depends Test {
 
 Task BuildDocs -depends Build {
     $lines
-    $moduleRoot = Split-Path (Resolve-Path "$ProjectRoot\*\*.psd1")
-    $moduleName = Split-Path $moduleRoot -Leaf
-    $psd1 = Join-Path $moduleRoot "$moduleName.psd1"
-    Write-Host "Loading Module from $psd1"
-    Remove-Module $ENV:BHProjectName -Force -ea SilentlyContinue
-    Import-Module $psd1 -force
-    Get-Module $ENV:BHProjectName
-    $YMLtext = (Get-Content "$ProjectRoot\header-mkdocs.yml") -join "`r`n"
-    $YMLText = "$YMLtext`r`n  - Functions:`r`n"
-    $Params = @{
-        Module = $ENV:BHProjectName
-        Force = $true
-        OutputFolder = "$ProjectRoot\docs\"
-        NoMetadata = $true
-        ErrorAction = 'SilentlyContinue'
+    
+    if (
+        $ENV:BHBuildSystem -ne 'Unknown' -and
+        $ENV:BHBranchName -eq "master" -and
+        $ENV:BHCommitMessage -match '!builddocs'
+    ) {
+        $moduleRoot = Split-Path (Resolve-Path "$ProjectRoot\*\*.psd1")
+        $moduleName = Split-Path $moduleRoot -Leaf
+        $psd1 = Join-Path $moduleRoot "$moduleName.psd1"
+        Write-Host "Loading Module from $psd1"
+        Remove-Module $ENV:BHProjectName -Force -ea SilentlyContinue
+        Import-Module $psd1 -force
+        $YMLtext = (Get-Content "$ProjectRoot\header-mkdocs.yml") -join "`r`n"
+        $YMLText = "$YMLtext`r`n  - Functions:`r`n"
+        $Params = @{
+            Module = $ENV:BHProjectName
+            Force = $true
+            OutputFolder = "$ProjectRoot\docs\"
+            NoMetadata = $true
+        }
+        New-MarkdownHelp @Params| foreach-object {
+            $NewName = "Function-$($_.Name)"
+            $Destination = Join-Path $_.DirectoryName $NewName
+            $Function = $_.Name -replace '\.md', ''
+            $YMLText = "{0}    - {1}: {2}`r`n" -f $YMLText, $Function, $NewName
+            Move-Item $_.FullName  $Destination -Force -PassThru
+        }
+        $YMLtext | Set-Content -Path "$ProjectRoot\mkdocs.yml"
     }
-    $Params
-    New-MarkdownHelp @params | foreach-object {
-        $NewName = "Function-$($_.Name)"
-        $Destination = Join-Path $_.DirectoryName $NewName
-        $Function = $_.Name -replace '\.md', ''
-        $YMLText = "{0}    - {1}: {2}`r`n" -f $YMLText, $Function, $NewName
-        Move-Item $_.FullName  $Destination -Force -PassThru
+    else {
+        "Skipping BuildDocs: To Build Docs, ensure that...`n" +
+        "`t* You are in a known build system (Current: $ENV:BHBuildSystem)`n" +
+        "`t* You are committing to the master branch (Current: $ENV:BHBranchName) `n" +
+        "`t* Your commit message includes !builddocs (Current: $ENV:BHCommitMessage)"
     }
-    $YMLtext | Set-Content -Path "$ProjectRoot\mkdocs.yml"
 }
 
 Task Deploy -Depends BuildDocs {
