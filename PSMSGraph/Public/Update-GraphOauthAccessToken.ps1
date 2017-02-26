@@ -47,6 +47,7 @@
         Get-GraphOauthAccessToken
 #>
 function Update-GraphOAuthAccessToken {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText","")]
     [CmdletBinding(ConfirmImpact = 'Low')]
     [OutputType('MSGraphAPI.Oauth.AccessToken')]
     param
