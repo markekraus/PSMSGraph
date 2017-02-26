@@ -17,7 +17,7 @@
 @{
 	
 	# Script module or binary module file associated with this manifest
-	ModuleToProcess = 'PSMSGraph.psm1'
+    RootModule = 'PSMSGraph.psm1'
 	
 	# Version number of this module.
 	ModuleVersion = '1.0.10.0'
