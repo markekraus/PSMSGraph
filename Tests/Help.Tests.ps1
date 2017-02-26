@@ -1,8 +1,8 @@
 $projectRoot = Resolve-Path "$PSScriptRoot\.."
-$moduleRoot = Split-Path (Resolve-Path "$projectRoot\*\*.psm1")
+$moduleRoot = Split-Path (Resolve-Path "$projectRoot\*\*.psd1")
 $moduleName = Split-Path $moduleRoot -Leaf
 
-Import-Module (Join-Path $moduleRoot "$moduleName.psm1") -force
+Import-Module (Join-Path $moduleRoot "$moduleName.psd1") -force
 
 Describe "Help tests for $moduleName" -Tags Build {
 
