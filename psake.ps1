@@ -98,7 +98,7 @@ Task BuildDocs -depends Build {
         $psd1 = Join-Path $moduleRoot "$moduleName.psd1"
         Write-Host "Loading Module from $psd1"
         Remove-Module $ENV:BHProjectName -Force -ea SilentlyContinue
-        Import-Module $psd1 -force
+        Import-Module $psd1 -force -Global
         $YMLtext = (Get-Content "$ProjectRoot\header-mkdocs.yml") -join "`r`n"
         $YMLText = "$YMLtext`r`n  - Functions:`r`n"
         $Params = @{
