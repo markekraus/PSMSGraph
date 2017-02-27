@@ -3,7 +3,7 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/8/2017 8:48 AM
-     Edited on:     2/16/2017
+     Edited on:     2/27/2017
 	 Created by:   	Mark Kraus
 	 Organization: 	Mitel
 	 Filename:     	Get-GraphOauthAuthorizationCode.ps1
@@ -34,6 +34,7 @@
         MSGraphAPI.Oauth.AuthorizationCode
 #>
 function Get-GraphOauthAuthorizationCode {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
     [CmdletBinding(ConfirmImpact = 'Low',
                    SupportsShouldProcess = $true)]
     [OutputType('MSGraphAPI.Oauth.AuthorizationCode')]
@@ -98,7 +99,7 @@ function Get-GraphOauthAuthorizationCode {
             $Response["$key"] = $QueryOutput[$key]
         }
         $SecAuthCode = 'NOAUTHCODE' | ConvertTo-SecureString -AsPlainText -Force
-        $AuthCodeCredential = [pscredential]::new('NOAUTHCODE')
+        $AuthCodeCredential = [pscredential]::new('NOAUTHCODE', $SecAuthCode)
         if ($Response.Code) {
             $SecAuthCode = $Response.Code | ConvertTo-SecureString -AsPlainText -Force
             $AuthCodeCredential = [pscredential]::new('AuthCode', $SecAuthCode)
