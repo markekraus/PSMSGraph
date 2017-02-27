@@ -3,6 +3,8 @@
 environment:
   NugetApiKey:
     secure: 3sC7bUSY534F4WnpYXlP7XyikulxbSpfLZgC3y37gA2OAeMp35la0zplVjiliOFn
+  access_token:
+    secure: eBkkiWtTuwTfnTN2G4n0RegBV+MImV3BoKYm2pGmi/0Lu3VGb4m07m5FJWq+29sD
 
 # Allow WMF5 (i.e. PowerShellGallery functionality)
 os: WMF 5
@@ -17,3 +19,14 @@ build: false
 #Kick off the CI/CD pipeline
 test_script:
   - ps: . .\build.ps1
+
+on_success:
+  - git config --global credential.helper store
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  - git config --global user.email "appveyor-psmsgraph-github@markekraus.com"
+  - git config --global user.name "markekraus"
+  - git checkout master
+  - git add -A
+  - git commit -m 'appveyor post-build commit[ci skip]'
+  - git staus
+  - git push
