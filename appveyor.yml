@@ -29,5 +29,5 @@ on_success:
   - git checkout master
   - git add -A
   - git commit -m "appveyor post-build commit[ci skip]"
-  - git staus
+  - git status
   - git push
