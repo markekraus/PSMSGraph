@@ -6,3 +6,27 @@ theme_dir: docs/Themes/psinder
 copyright: "PSMSGraph is licensed under the <a href='https://github.com/markekraus/PSMSGraph/raw/master/LICENSE'>MIT license"
 pages:
   - Home: index.md
+  - Functions:
+    - Add-AADAppRoleAssignment: functions/Add-AADAppRoleAssignment.md
+    - Export-GraphApplication: functions/Export-GraphApplication.md
+    - Export-GraphOAuthAccessToken: functions/Export-GraphOAuthAccessToken.md
+    - Get-AADGroupByDisplayName: functions/Get-AADGroupByDisplayName.md
+    - Get-AADGroupByID: functions/Get-AADGroupByID.md
+    - Get-AADGroupMembers: functions/Get-AADGroupMembers.md
+    - Get-AADServicePrincipalAppRoleAssignedTo: functions/Get-AADServicePrincipalAppRoleAssignedTo.md
+    - Get-AADServicePrinicpalbyDisplayName: functions/Get-AADServicePrinicpalbyDisplayName.md
+    - Get-AADServicePrinicpalbyId: functions/Get-AADServicePrinicpalbyId.md
+    - Get-AADUserAll: functions/Get-AADUserAll.md
+    - Get-AADUserAppRoleAssignment: functions/Get-AADUserAppRoleAssignment.md
+    - Get-AADUserByID: functions/Get-AADUserByID.md
+    - Get-AADUserByUserPrincipalName: functions/Get-AADUserByUserPrincipalName.md
+    - Get-GraphOauthAccessToken: functions/Get-GraphOauthAccessToken.md
+    - Get-GraphOauthAuthorizationCode: functions/Get-GraphOauthAuthorizationCode.md
+    - Import-GraphApplication: functions/Import-GraphApplication.md
+    - Import-GraphOAuthAccessToken: functions/Import-GraphOAuthAccessToken.md
+    - Invoke-GraphRequest: functions/Invoke-GraphRequest.md
+    - New-GraphApplication: functions/New-GraphApplication.md
+    - New-GraphOauthAccessToken: functions/New-GraphOauthAccessToken.md
+    - Remove-AADAppRoleAssignment: functions/Remove-AADAppRoleAssignment.md
+    - Update-GraphOAuthAccessToken: functions/Update-GraphOAuthAccessToken.md
+
