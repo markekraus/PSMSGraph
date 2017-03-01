@@ -12,7 +12,7 @@ pages:
     - Export-GraphOAuthAccessToken: functions/Export-GraphOAuthAccessToken.md
     - Get-AADGroupByDisplayName: functions/Get-AADGroupByDisplayName.md
     - Get-AADGroupByID: functions/Get-AADGroupByID.md
-    - Get-AADGroupMembers: functions/Get-AADGroupMembers.md
+    - Get-AADGroupMember: functions/Get-AADGroupMember.md
     - Get-AADServicePrincipalAppRoleAssignedTo: functions/Get-AADServicePrincipalAppRoleAssignedTo.md
     - Get-AADServicePrinicpalbyDisplayName: functions/Get-AADServicePrinicpalbyDisplayName.md
     - Get-AADServicePrinicpalbyId: functions/Get-AADServicePrinicpalbyId.md

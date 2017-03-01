@@ -6,7 +6,7 @@ Submits an access reqest to the Graph API
 ## SYNTAX
 
 ```
-Invoke-GraphRequest [-AccessToken] <Object> [-Uri] <Uri> [-Method] <WebRequestMethod> [[-Body] <Object>]
+Invoke-GraphRequest [-AccessToken] <Object> [-Uri] <Uri> [[-Method] <WebRequestMethod>] [[-Body] <Object>]
  [[-Headers] <IDictionary>] [[-TimeoutSec] <Int32>] [[-ContentType] <String>] [-WhatIf] [-Confirm]
 ```
 
@@ -85,7 +85,7 @@ Parameter Sets: (All)
 Aliases: 
 Accepted values: Default, Get, Head, Post, Put, Delete, Trace, Options, Merge, Patch
 
-Required: True
+Required: False
 Position: 3
 Default value: Default
 Accept pipeline input: True (ByPropertyName)
