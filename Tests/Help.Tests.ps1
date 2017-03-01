@@ -6,7 +6,7 @@ Import-Module (Join-Path $moduleRoot "$moduleName.psd1") -force
 
 Describe "Help tests for $moduleName" -Tags Build {
 
-    $functions = Get-Command -Module $moduleName
+    $functions = Get-Command -Module $moduleName -CommandType Function
     $help = $functions | %{Get-Help $_.name}
     foreach($node in $help)
     {

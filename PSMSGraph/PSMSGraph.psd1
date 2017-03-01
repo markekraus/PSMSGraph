@@ -2,7 +2,7 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/8/2017 7:14 AM
-     Last Modified: 2/16/2017
+     Last Modified: 3/01/2017
 	 Created by:   	Mark Kraus
 	 Organization: 	Mitel
 	 Filename:     	PSMSGraph.psd1
@@ -101,13 +101,13 @@
         'Public\Add-AADAppRoleAssignment.ps1'
         'Public\Get-AADUserAppRoleAssignment.ps1'
         'Public\Get-AADGroupById.ps1'
-        'Public\Get-AADGroupMembers.ps1'
+        'Public\Get-AADGroupMember.ps1'
         'Public\Get-AADGroupByDisplayName.ps1'
         'Public\Get-AADUserAll.ps1'
     )
 	
 	# Functions to export from this module
-    FunctionsToExport = @('Add-AADAppRoleAssignment','Export-GraphApplication','Export-GraphOauthAccessToken','Get-AADGroupByDisplayName','Get-AADGroupById','Get-AADGroupMembers','Get-AADServicePrincipalAppRoleAssignedTo','Get-AADServicePrinicpalbyDisplayName','Get-AADServicePrinicpalbyId','Get-AADUserAll','Get-AADUserAppRoleAssignment','Get-AADUserByID','Get-AADUserByUserPrincipalName','Get-GraphOauthAccessToken','Get-GraphOauthAuthorizationCode','Import-GraphApplication','Import-GraphOauthAccessToken','Invoke-GraphRequest','New-GraphApplication','New-GraphOauthAccessToken','Remove-AADAppRoleAssignment','Update-GraphOauthAccessToken')
+    FunctionsToExport = @('Add-AADAppRoleAssignment','Export-GraphApplication','Export-GraphOauthAccessToken','Get-AADGroupByDisplayName','Get-AADGroupById','Get-AADGroupMember','Get-AADServicePrincipalAppRoleAssignedTo','Get-AADServicePrinicpalbyDisplayName','Get-AADServicePrinicpalbyId','Get-AADUserAll','Get-AADUserAppRoleAssignment','Get-AADUserByID','Get-AADUserByUserPrincipalName','Get-GraphOauthAccessToken','Get-GraphOauthAuthorizationCode','Import-GraphApplication','Import-GraphOauthAccessToken','Invoke-GraphRequest','New-GraphApplication','New-GraphOauthAccessToken','Remove-AADAppRoleAssignment','Update-GraphOauthAccessToken')
 	
 	# Cmdlets to export from this module
 	CmdletsToExport = @()
