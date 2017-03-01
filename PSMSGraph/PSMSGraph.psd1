@@ -110,13 +110,13 @@
     FunctionsToExport = @('Add-AADAppRoleAssignment','Export-GraphApplication','Export-GraphOauthAccessToken','Get-AADGroupByDisplayName','Get-AADGroupById','Get-AADGroupMembers','Get-AADServicePrincipalAppRoleAssignedTo','Get-AADServicePrinicpalbyDisplayName','Get-AADServicePrinicpalbyId','Get-AADUserAll','Get-AADUserAppRoleAssignment','Get-AADUserByID','Get-AADUserByUserPrincipalName','Get-GraphOauthAccessToken','Get-GraphOauthAuthorizationCode','Import-GraphApplication','Import-GraphOauthAccessToken','Invoke-GraphRequest','New-GraphApplication','New-GraphOauthAccessToken','Remove-AADAppRoleAssignment','Update-GraphOauthAccessToken')
 	
 	# Cmdlets to export from this module
-	CmdletsToExport = '*' 
+	CmdletsToExport = @()
 	
 	# Variables to export from this module
-	VariablesToExport = '*'
+	VariablesToExport = @()
 	
 	# Aliases to export from this module
-	AliasesToExport = '*' #For performanace, list alias explicity
+	AliasesToExport = @('Get-AADGroupMembers') 
 	
 	# List of all modules packaged with this module
 	ModuleList = @()

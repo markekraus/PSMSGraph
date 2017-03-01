@@ -63,6 +63,7 @@
         Additional information about the function.
 #>
 function New-GraphApplication {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "", Justification = "Creates in memory object only.")]
     [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('MSGraphAPI.Application')]
     param

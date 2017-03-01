@@ -55,6 +55,7 @@
         MSGraphAPI.Oauth.AccessToken
 #>
 function New-GraphOauthAccessToken {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "", Justification = "Creates in memory object only.")]
     [CmdletBinding(ConfirmImpact = 'Low')]
     [OutputType('MSGraphAPI.Oauth.AccessToken')]
     param

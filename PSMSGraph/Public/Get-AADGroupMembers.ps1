@@ -5,10 +5,10 @@
 	 Created on:   	2/14/2017 6:02 AM
 	 Created by:   	Mark Kraus
 	 Organization: 	Mitel
-	 Filename:     	Get-AADGroupMembers.ps1
+	 Filename:     	Get-AADGroupMember.ps1
 	===========================================================================
 	.DESCRIPTION
-		Get-AADGroupMembers Function
+		Get-AADGroupMember Function
 #>
 
 <#
@@ -34,7 +34,7 @@
     .NOTES
         Additional information about the function.
 #>
-function Get-AADGroupMembers {
+function Get-AADGroupMember {
     [CmdletBinding(SupportsShouldProcess = $true)]
     [OutputType('MSGraphAPI.DirectoryObject.User')]
     param
@@ -99,3 +99,5 @@ function Get-AADGroupMembers {
         }
     }
 }
+
+New-Alias -Name Get-AADGroupMembers -Value Get-AADGroupMember -Description "Alias for Get-AADGroupMember"

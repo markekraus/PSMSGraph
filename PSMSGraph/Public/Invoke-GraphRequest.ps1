@@ -96,7 +96,7 @@ function Invoke-GraphRequest {
         [ValidateNotNullOrEmpty()]
         [System.Uri]$Uri,
         
-        [Parameter(Mandatory = $true,
+        [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
         [Microsoft.PowerShell.Commands.WebRequestMethod]$Method = 'Default',
         
