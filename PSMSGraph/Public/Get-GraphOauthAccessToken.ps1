@@ -54,13 +54,20 @@
         See Update-GraphOauthAccessToken for refreshing the Graph Access Token
     
     .LINK
-        Export-GraphOauthAccessToken
-        Import-GraphOauthAccessToken
-        Update-GraphOauthAccessToken
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Update-GraphOauthAccessToken
+    .LINK
+        https://graph.microsoft.io/en-us/docs/authorization/auth_overview
 #>
 function Get-GraphOauthAccessToken {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText","")]
     [CmdletBinding(ConfirmImpact = 'Low',
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken',
                    SupportsShouldProcess = $true)]
     [OutputType('MSGraphAPI.Oauth.AccessToken')]
     param

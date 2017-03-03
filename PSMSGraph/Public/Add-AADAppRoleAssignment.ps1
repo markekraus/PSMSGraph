@@ -39,9 +39,19 @@
     
     .OUTPUTS
         MSGraphAPI.DirectoryObject.AppRoleAssignment
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Add-AADAppRoleAssignment
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Remove-AADAppRoleAssignment
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserAppRoleAssignment
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADServicePrincipalAppRoleAssignedTo
 #>
 function Add-AADAppRoleAssignment {
     [CmdletBinding(ConfirmImpact = 'Medium',
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Add-AADAppRoleAssignment',
                    SupportsShouldProcess = $true)]
     [OutputType('MSGraphAPI.DirectoryObject.AppRoleAssignment')]
     param

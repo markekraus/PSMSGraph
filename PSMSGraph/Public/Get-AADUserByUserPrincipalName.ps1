@@ -37,9 +37,13 @@
     
     .OUTPUTS
         MSGraphAPI.DirectoryObject.User
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserByUserPrincipalName
 #>
 function Get-AADUserByUserPrincipalName {
-    [CmdletBinding(SupportsShouldProcess = $true)]
+    [CmdletBinding(SupportsShouldProcess = $true,
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserByUserPrincipalName')]
     [OutputType('MSGraphAPI.DirectoryObject.User')]
     param
     (

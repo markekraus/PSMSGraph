@@ -59,12 +59,17 @@
     .OUTPUTS
         MSGraphAPI.Application
     
-    .NOTES
-        Additional information about the function.
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphApplication
+    .Link
+        http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphApplication
 #>
 function New-GraphApplication {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "", Justification = "Creates in memory object only.")]
-    [CmdletBinding(ConfirmImpact = 'None')]
+    [CmdletBinding(ConfirmImpact = 'None',
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication')]
     [OutputType('MSGraphAPI.Application')]
     param
     (

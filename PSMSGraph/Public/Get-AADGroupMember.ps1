@@ -33,9 +33,12 @@
     
     .NOTES
         Additional information about the function.
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember
 #>
 function Get-AADGroupMember {
-    [CmdletBinding(SupportsShouldProcess = $true)]
+    [CmdletBinding(SupportsShouldProcess = $true,
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember')]
     [OutputType('MSGraphAPI.DirectoryObject.User')]
     param
     (

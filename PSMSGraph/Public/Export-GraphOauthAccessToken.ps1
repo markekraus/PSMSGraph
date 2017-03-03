@@ -54,11 +54,15 @@
         See Get-GraphOauthAccessToken for obtaining a Graph AccessToken Objects
     
     .LINK
-        Import-GraphOauthAccessToken
-        Get-GraphOauthAccessToken
+        http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOAuthAccessToken
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken
+    .LINK 
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken
 #>
 function Export-GraphOAuthAccessToken {
     [CmdletBinding(DefaultParameterSetName = 'Path',
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOAuthAccessToken',
                    ConfirmImpact = 'Low',
                    SupportsShouldProcess = $true)]
     [OutputType([System.IO.FileInfo])]

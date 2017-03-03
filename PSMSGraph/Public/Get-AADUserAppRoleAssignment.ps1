@@ -33,9 +33,13 @@
     
     .NOTES
         Additional information about the function.
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserAppRoleAssignment
 #>
 function Get-AADUserAppRoleAssignment {
-    [CmdletBinding(SupportsShouldProcess = $true)]
+    [CmdletBinding(SupportsShouldProcess = $true,
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserAppRoleAssignment')]
     [OutputType('MSGraphAPI.DirectoryObject.AppRoleAssignment')]
     param
     (

@@ -32,10 +32,18 @@
     
     .OUTPUTS
         MSGraphAPI.Oauth.AuthorizationCode
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAuthorizationCode
+    .LINK
+        https://graph.microsoft.io/en-us/docs/authorization/auth_overview
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAuthorizationCode/New-GraphApplication
 #>
 function Get-GraphOauthAuthorizationCode {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
     [CmdletBinding(ConfirmImpact = 'Low',
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAuthorizationCode',
                    SupportsShouldProcess = $true)]
     [OutputType('MSGraphAPI.Oauth.AuthorizationCode')]
     param

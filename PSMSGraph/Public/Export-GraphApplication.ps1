@@ -54,12 +54,16 @@
         See New-GraphApplication for creating new Graph Application objects
     
     .LINK
-        Import-GraphApplication
-        New-GraphApplication
+        http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphApplication
+    .Link
+        http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphApplication
+    .Link
+        http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication
 #>
 function Export-GraphApplication {
     [CmdletBinding(DefaultParameterSetName = 'Path',
                    ConfirmImpact = 'Low',
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphApplication',
                    SupportsShouldProcess = $true)]
     [OutputType([System.IO.FileInfo])]
     param

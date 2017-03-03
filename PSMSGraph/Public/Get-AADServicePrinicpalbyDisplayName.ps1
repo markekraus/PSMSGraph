@@ -37,9 +37,13 @@
     
     .OUTPUTS
         MSGraphAPI.DirectoryObject.ServicePrincipal
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADServicePrinicpalbyDisplayName
 #>
 function Get-AADServicePrinicpalbyDisplayName {
-    [CmdletBinding(SupportsShouldProcess = $true)]
+    [CmdletBinding(SupportsShouldProcess = $true,
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADServicePrinicpalbyDisplayName')]
     [OutputType('MSGraphAPI.DirectoryObject.ServicePrincipal')]
     param
     (

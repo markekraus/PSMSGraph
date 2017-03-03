@@ -79,9 +79,19 @@
     
     .OUTPUTS
         MSGraphAPI.RequestResult
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Invoke-GraphRequest
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken
+    .LINK 
+        https://graph.microsoft.io/en-us/docs
+    .LINK
+        https://msdn.microsoft.com/en-us/library/azure/hh974476.aspx
 #>
 function Invoke-GraphRequest {
     [CmdletBinding(ConfirmImpact = 'Low',
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Invoke-GraphRequest',
                    SupportsShouldProcess = $true)]
     [OutputType('MSGraphAPI.RequestResult')]
     param

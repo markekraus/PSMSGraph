@@ -34,9 +34,12 @@
     
     .NOTES
         Additional information about the function.
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADServicePrincipalAppRoleAssignedTo
 #>
 function Get-AADServicePrincipalAppRoleAssignedTo {
-    [CmdletBinding(SupportsShouldProcess = $true)]
+    [CmdletBinding(SupportsShouldProcess = $true,
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADServicePrincipalAppRoleAssignedTo')]
     [OutputType('MSGraphAPI.DirectoryObject.AppRoleAssignment')]
     param
     (

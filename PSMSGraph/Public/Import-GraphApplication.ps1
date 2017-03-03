@@ -32,8 +32,11 @@
         See New-GraphApplication for creating new Graph Application Objects
     
     .LINK
-        Export-GraphApplication
-        New-GraphApplication
+        http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphApplication
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphApplication
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication
 
     .OUTPUTS
         MSGraphAPI.Application
@@ -41,6 +44,7 @@
 #>
 function Import-GraphApplication {
     [CmdletBinding(DefaultParameterSetName = 'Path',
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphApplication',
                    ConfirmImpact = 'Low',
                    SupportsShouldProcess = $true)]
     [OutputType('MSGraphAPI.Application')]

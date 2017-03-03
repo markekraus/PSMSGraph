@@ -33,10 +33,20 @@
     
     .OUTPUTS
         MSGraphAPI.RequestResult
+    
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Remove-AADAppRoleAssignment
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Add-AADAppRoleAssignment
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserAppRoleAssignment
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADServicePrincipalAppRoleAssignedTo
 #>
 function Remove-AADAppRoleAssignment {
     [CmdletBinding(ConfirmImpact = 'High',
                    SupportsPaging = $false,
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Remove-AADAppRoleAssignment',
                    SupportsShouldProcess = $true)]
     [OutputType('MSGraphAPI.RequestResult')]
     param

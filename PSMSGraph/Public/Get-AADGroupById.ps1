@@ -36,9 +36,12 @@
     
     .OUTPUTS
         MSGraphAPI.DirectoryObject.Group
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID
 #>
 function Get-AADGroupByID {
-    [CmdletBinding(SupportsShouldProcess = $true)]
+    [CmdletBinding(SupportsShouldProcess = $true,
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID')]
     [OutputType('MSGraphAPI.DirectoryObject.Group')]
     param
     (

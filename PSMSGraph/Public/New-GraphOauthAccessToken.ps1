@@ -53,10 +53,21 @@
     
     .OUTPUTS
         MSGraphAPI.Oauth.AccessToken
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphOauthAccessToken
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Update-GraphOauthAccessToken
 #>
 function New-GraphOauthAccessToken {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "", Justification = "Creates in memory object only.")]
-    [CmdletBinding(ConfirmImpact = 'Low')]
+    [CmdletBinding(ConfirmImpact = 'Low',
+                   HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphOauthAccessToken')]
     [OutputType('MSGraphAPI.Oauth.AccessToken')]
     param
     (
