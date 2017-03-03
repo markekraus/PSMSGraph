@@ -128,3 +128,5 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADServicePrinicpalbyDisplayName](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADServicePrinicpalbyDisplayName)
+

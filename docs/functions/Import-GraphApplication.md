@@ -104,6 +104,9 @@ See New-GraphApplication for creating new Graph Application Objects
 
 ## RELATED LINKS
 
-[Export-GraphApplication
-New-GraphApplication]()
+[http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphApplication](http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphApplication)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphApplication](http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphApplication)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication](http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication)
 

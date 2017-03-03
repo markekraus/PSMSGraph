@@ -117,5 +117,11 @@ Ses Get-GraphOauthAccessToken for retrieving an OAuth Access Token from Graph
 
 ## RELATED LINKS
 
-[Get-GraphOauthAccessToken]()
+[http://psmsgraph.readthedocs.io/en/latest/functions/Update-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Update-GraphOauthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken)
 

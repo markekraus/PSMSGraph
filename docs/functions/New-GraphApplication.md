@@ -147,7 +147,12 @@ Accept wildcard characters: False
 ### MSGraphAPI.Application
 
 ## NOTES
-Additional information about the function.
 
 ## RELATED LINKS
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication](http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphApplication](http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphApplication)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphApplication](http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphApplication)
 

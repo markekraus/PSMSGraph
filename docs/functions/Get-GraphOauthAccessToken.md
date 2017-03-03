@@ -142,7 +142,13 @@ See Update-GraphOauthAccessToken for refreshing the Graph Access Token
 
 ## RELATED LINKS
 
-[Export-GraphOauthAccessToken
-Import-GraphOauthAccessToken
-Update-GraphOauthAccessToken]()
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Update-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Update-GraphOauthAccessToken)
+
+[https://graph.microsoft.io/en-us/docs/authorization/auth_overview](https://graph.microsoft.io/en-us/docs/authorization/auth_overview)
 

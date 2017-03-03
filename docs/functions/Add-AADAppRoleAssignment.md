@@ -143,3 +143,11 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
+[http://psmsgraph.readthedocs.io/en/latest/functions/Add-AADAppRoleAssignment](http://psmsgraph.readthedocs.io/en/latest/functions/Add-AADAppRoleAssignment)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Remove-AADAppRoleAssignment](http://psmsgraph.readthedocs.io/en/latest/functions/Remove-AADAppRoleAssignment)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserAppRoleAssignment](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserAppRoleAssignment)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADServicePrincipalAppRoleAssignedTo](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADServicePrincipalAppRoleAssignedTo)
+

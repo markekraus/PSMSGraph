@@ -104,6 +104,9 @@ See Get-GraphOauthAccessToken for obtaining a Graph Access Token from the API
 
 ## RELATED LINKS
 
-[Export-GraphOauthAccessToken
-Get-GraphOauthAccessToken]()
+[http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOAuthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOAuthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken)
 

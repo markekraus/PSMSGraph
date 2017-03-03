@@ -127,3 +127,5 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserByID](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserByID)
+

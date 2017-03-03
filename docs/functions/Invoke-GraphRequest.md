@@ -214,3 +214,11 @@ Accept wildcard characters: False
 
 ## RELATED LINKS
 
+[http://psmsgraph.readthedocs.io/en/latest/functions/Invoke-GraphRequest](http://psmsgraph.readthedocs.io/en/latest/functions/Invoke-GraphRequest)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken)
+
+[https://graph.microsoft.io/en-us/docs](https://graph.microsoft.io/en-us/docs)
+
+[https://msdn.microsoft.com/en-us/library/azure/hh974476.aspx](https://msdn.microsoft.com/en-us/library/azure/hh974476.aspx)
+

@@ -148,6 +148,9 @@ See Get-GraphOauthAccessToken for obtaining a Graph AccessToken Objects
 
 ## RELATED LINKS
 
-[Import-GraphOauthAccessToken
-Get-GraphOauthAccessToken]()
+[http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOAuthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOAuthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken)
 

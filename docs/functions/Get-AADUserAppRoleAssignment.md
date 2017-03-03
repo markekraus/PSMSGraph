@@ -114,3 +114,5 @@ Additional information about the function.
 
 ## RELATED LINKS
 
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserAppRoleAssignment](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserAppRoleAssignment)
+
