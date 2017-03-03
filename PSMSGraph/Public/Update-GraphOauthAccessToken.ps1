@@ -52,7 +52,7 @@
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken
 #>
-function Update-GraphOAuthAccessToken {
+function Update-GraphOauthAccessToken {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "", Justification = "Converts plaintext returned from API to secure string.")]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "", Justification = "Impliments Force param. Updates in memory object only.")]
     [CmdletBinding(ConfirmImpact = 'Low',

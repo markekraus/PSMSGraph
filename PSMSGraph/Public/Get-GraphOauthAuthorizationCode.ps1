@@ -38,7 +38,7 @@
     .LINK
         https://graph.microsoft.io/en-us/docs/authorization/auth_overview
     .LINK
-        http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAuthorizationCode/New-GraphApplication
+        http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication
 #>
 function Get-GraphOauthAuthorizationCode {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]

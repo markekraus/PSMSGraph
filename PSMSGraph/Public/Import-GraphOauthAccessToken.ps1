@@ -32,7 +32,7 @@
         See Get-GraphOauthAccessToken for obtaining a Graph Access Token from the API
     
     .LINK
-        http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOAuthAccessToken
+        http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken
     .LINK
@@ -41,7 +41,7 @@
     .OUTPUTS
         MSGraphAPI.Oauth.AccessToken
 #>
-function Import-GraphOAuthAccessToken {
+function Import-GraphOauthAccessToken {
     [CmdletBinding(DefaultParameterSetName = 'Path',
                    ConfirmImpact = 'Low',
                    HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOAuthAccessToken',
