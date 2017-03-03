@@ -9,7 +9,7 @@ pages:
   - Functions:
     - Add-AADAppRoleAssignment: functions/Add-AADAppRoleAssignment.md
     - Export-GraphApplication: functions/Export-GraphApplication.md
-    - Export-GraphOAuthAccessToken: functions/Export-GraphOAuthAccessToken.md
+    - Export-GraphOauthAccessToken: functions/Export-GraphOauthAccessToken.md
     - Get-AADGroupByDisplayName: functions/Get-AADGroupByDisplayName.md
     - Get-AADGroupByID: functions/Get-AADGroupByID.md
     - Get-AADGroupMember: functions/Get-AADGroupMember.md
@@ -23,10 +23,10 @@ pages:
     - Get-GraphOauthAccessToken: functions/Get-GraphOauthAccessToken.md
     - Get-GraphOauthAuthorizationCode: functions/Get-GraphOauthAuthorizationCode.md
     - Import-GraphApplication: functions/Import-GraphApplication.md
-    - Import-GraphOAuthAccessToken: functions/Import-GraphOAuthAccessToken.md
+    - Import-GraphOauthAccessToken: functions/Import-GraphOauthAccessToken.md
     - Invoke-GraphRequest: functions/Invoke-GraphRequest.md
     - New-GraphApplication: functions/New-GraphApplication.md
     - New-GraphOauthAccessToken: functions/New-GraphOauthAccessToken.md
     - Remove-AADAppRoleAssignment: functions/Remove-AADAppRoleAssignment.md
-    - Update-GraphOAuthAccessToken: functions/Update-GraphOAuthAccessToken.md
+    - Update-GraphOauthAccessToken: functions/Update-GraphOauthAccessToken.md
 

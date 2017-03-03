@@ -1,4 +1,4 @@
-# Import-GraphOAuthAccessToken
+# Import-GraphOauthAccessToken
 
 ## SYNOPSIS
 Imports an exported Graph OAuth Access Token Object
@@ -7,12 +7,12 @@ Imports an exported Graph OAuth Access Token Object
 
 ### Path (Default)
 ```
-Import-GraphOAuthAccessToken -Path <String[]> [-WhatIf] [-Confirm]
+Import-GraphOauthAccessToken -Path <String[]> [-WhatIf] [-Confirm]
 ```
 
 ### LiteralPath
 ```
-Import-GraphOAuthAccessToken -LiteralPath <String[]> [-WhatIf] [-Confirm]
+Import-GraphOauthAccessToken -LiteralPath <String[]> [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
@@ -104,7 +104,7 @@ See Get-GraphOauthAccessToken for obtaining a Graph Access Token from the API
 
 ## RELATED LINKS
 
-[http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOAuthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOAuthAccessToken)
+[http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken)
 
 [http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken)
 

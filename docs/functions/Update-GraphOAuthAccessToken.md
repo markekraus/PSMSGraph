@@ -1,4 +1,4 @@
-# Update-GraphOAuthAccessToken
+# Update-GraphOauthAccessToken
 
 ## SYNOPSIS
 Refreshes a Graph Oauth Access Token
@@ -6,7 +6,7 @@ Refreshes a Graph Oauth Access Token
 ## SYNTAX
 
 ```
-Update-GraphOAuthAccessToken [-AccessToken] <PSObject[]> [[-BaseUrl] <String>] [[-RenewalPeriod] <Int32>]
+Update-GraphOauthAccessToken [-AccessToken] <PSObject[]> [[-BaseUrl] <String>] [[-RenewalPeriod] <Int32>]
  [-Force] [-PassThru]
 ```
 

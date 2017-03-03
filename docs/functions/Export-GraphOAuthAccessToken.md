@@ -1,4 +1,4 @@
-# Export-GraphOAuthAccessToken
+# Export-GraphOauthAccessToken
 
 ## SYNOPSIS
 Exports a Graph OAuth Access Token object to a file.
@@ -7,12 +7,12 @@ Exports a Graph OAuth Access Token object to a file.
 
 ### Path (Default)
 ```
-Export-GraphOAuthAccessToken -Path <String> [-Encoding <String>] -AccessToken <PSObject> [-WhatIf] [-Confirm]
+Export-GraphOauthAccessToken -Path <String> [-Encoding <String>] -AccessToken <PSObject> [-WhatIf] [-Confirm]
 ```
 
 ### LiteralPath
 ```
-Export-GraphOAuthAccessToken -LiterlPath <String> [-Encoding <String>] -AccessToken <PSObject> [-WhatIf]
+Export-GraphOauthAccessToken -LiterlPath <String> [-Encoding <String>] -AccessToken <PSObject> [-WhatIf]
  [-Confirm]
 ```
 
@@ -148,7 +148,7 @@ See Get-GraphOauthAccessToken for obtaining a Graph AccessToken Objects
 
 ## RELATED LINKS
 
-[http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOAuthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOAuthAccessToken)
+[http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken)
 
 [http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken)
 

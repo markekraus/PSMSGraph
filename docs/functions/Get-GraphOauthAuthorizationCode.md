@@ -102,5 +102,5 @@ Accept wildcard characters: False
 
 [https://graph.microsoft.io/en-us/docs/authorization/auth_overview](https://graph.microsoft.io/en-us/docs/authorization/auth_overview)
 
-[http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAuthorizationCode/New-GraphApplication](http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAuthorizationCode/New-GraphApplication)
+[http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication](http://psmsgraph.readthedocs.io/en/latest/functions/New-GraphApplication)
 
