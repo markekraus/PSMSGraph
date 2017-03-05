@@ -1,5 +1,5 @@
-# Version 1.0.24.17 (2017-03-05)
 ## Functions
+
 ### All
 * Added HelpUri and .LINK's to Comment based Help
 
@@ -9,18 +9,20 @@
 ### Get-AADGroupMember
 * Made function singular instead of plural (was Get-AADGroupMembers)
 * Added Get-AADGroupMembers alias
-* Fixed all the millions of problems this rename caused
+* Fixed all the problems this rename caused and exposed with the build process and documentation
 
 ## Build Tools
+
 ### psake.ps1
 * Restructured psake.ps1
 	- Init > UnitTests > Build > Test > BuildDocs > Deploy > Post Deploy
-* Added AST based Function and Alias module manifest population
+* Added AST based Function and Alias module manifest population (now typos in file names will not cause function export issues)
 * Added NestedModule Population
 * Added Release notes and change log auto processing and documentation
 * PostDeploy is now local build friendly
 
 ## Tests
+
 ### PSScriptAnalyzer.tests.Ps1
 * Moved out of Project.Tests.ps1
 * Re-wroded the tests so they display better in AppVeyor test logs
@@ -37,6 +39,7 @@
 * Added Unit test for New-GraphOauthAccessToken
 
 ## Project
+
 ### RELEASE.md
 * Added this to server as the current release notes
 * Integrates automatically with ChangeLog.md through build pipeline
