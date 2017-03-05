@@ -40,6 +40,7 @@ function Get-AADGroupMember {
     [CmdletBinding(SupportsShouldProcess = $true,
                    HelpUri = 'http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember')]
     [OutputType('MSGraphAPI.DirectoryObject.User')]
+    [Alias('Get-AADGroupMembers')]
     param
     (
         [Parameter(Mandatory = $true,
@@ -102,5 +103,3 @@ function Get-AADGroupMember {
         }
     }
 }
-
-New-Alias -Name Get-AADGroupMembers -Value Get-AADGroupMember -Description "Alias for Get-AADGroupMember"

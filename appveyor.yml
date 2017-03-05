@@ -19,15 +19,3 @@ build: false
 #Kick off the CI/CD pipeline
 test_script:
   - ps: . .\build.ps1
-
-on_success:
-  - git config --global credential.helper store
-  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
-  - git config --global user.email "appveyor-psmsgraph-github@markekraus.com"
-  - git config --global user.name "markekraus"
-  - git config --global core.autocrlf true
-  - git checkout master
-  - git add -A
-  - git commit -m "appveyor post-build commit[ci skip]"
-  - git status
-  - git push
