@@ -2,7 +2,7 @@ site_name: PSMSGraph - PowerShell Module for the Microsoft Graph API
 repo_url: https://github.com/markekraus/PSMSGraph
 site_author: Mark Kraus
 edit_uri: edit/master/docs/
-theme_dir: docs/Themes/psinder
+theme: readthedocs
 copyright: "PSMSGraph is licensed under the <a href='https://github.com/markekraus/PSMSGraph/raw/master/LICENSE'>MIT license"
 pages:
   - Home: index.md
