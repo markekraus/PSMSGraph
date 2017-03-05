@@ -85,7 +85,7 @@ $GraphAccessToken  | Export-GraphOAuthAccessToken -Path 'c:\MyGraphApp\AccessTok
 ```
 
 ## Release Notes
-[https://github.com/markekraus/PSMSGraph/blob/develop/RELEASE.md](https://github.com/markekraus/PSMSGraph/blob/develop/RELEASE.md)
+[https://github.com/markekraus/PSMSGraph/blob/master/RELEASE.md](https://github.com/markekraus/PSMSGraph/blob/master/RELEASE.md)
 
 ## ChangeLog
-[https://github.com/markekraus/PSMSGraph/blob/develop/docs/ChangeLog.md](https://github.com/markekraus/PSMSGraph/blob/develop/docs/ChangeLog.md)
+[https://github.com/markekraus/PSMSGraph/blob/master/docs/ChangeLog.md](https://github.com/markekraus/PSMSGraph/blob/master/docs/ChangeLog.md)
