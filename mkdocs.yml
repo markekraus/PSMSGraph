@@ -6,6 +6,8 @@ theme_dir: docs/Themes/psinder
 copyright: "PSMSGraph is licensed under the <a href='https://github.com/markekraus/PSMSGraph/raw/master/LICENSE'>MIT license"
 pages:
   - Home: index.md
+  - Realse Notes: RELEASE.md
+  - Change Log: ChangeLog.md
   - Functions:
     - Add-AADAppRoleAssignment: functions/Add-AADAppRoleAssignment.md
     - Export-GraphApplication: functions/Export-GraphApplication.md
