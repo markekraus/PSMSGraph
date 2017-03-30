@@ -3,6 +3,7 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/8/2017 10:26 AM
+     Edited on::   3/30/2017
 	 Created by:   	Mark Kraus
 	 Organization: 	Mitel
 	 Filename:     	Get-GraphOauthAccessToken.ps1
@@ -33,7 +34,7 @@
     
         You must set the resource to match the endpoints your token will be valid for.
 
-            Microsft Graph:              https://outlook.office.com
+            Microsft Graph:              https://graph.microsoft.com
             Azure AD Graph API:          https://graph.windows.net
             Office 365 Unified Mail API: https://outlook.office.com
         

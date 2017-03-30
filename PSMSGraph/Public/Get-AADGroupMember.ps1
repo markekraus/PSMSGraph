@@ -3,6 +3,7 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/14/2017 6:02 AM
+     Edited on:     3/30/2017
 	 Created by:   	Mark Kraus
 	 Organization: 	Mitel
 	 Filename:     	Get-AADGroupMember.ps1
@@ -27,6 +28,11 @@
     
     .PARAMETER APIVersion
         version of the API to use. Default is 1.6
+    
+    .PARAMETER ResultsPerPage
+        The number of results to request from the API per call. This is the '$top' API query filter. Default is 100. Valid Range is 1-999.
+
+        This will not limit the number of resutls retruned by the command.
     
     .EXAMPLE
         PS C:\> $AADGroupMembers = $AADGroup | Get-AADGroupMembers 
@@ -55,7 +61,11 @@ function Get-AADGroupMember {
         [string]$BaseUrl = 'https://graph.windows.net',
         
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [string]$APIVersion = '1.6'
+        [string]$APIVersion = '1.6',
+        
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateRange(1,999)]
+        [int32]$ResultsPerPage = 100
     )
     
     process {
@@ -68,13 +78,14 @@ function Get-AADGroupMember {
             $Tenant = $Application.Tenant
             $SkipToken = $null
             do {
-                $Url = '{0}/{1}/{2}/{3}/{4}?api-version={5}{6}' -f @(
+                $Url = '{0}/{1}/{2}/{3}/{4}?api-version={5}{6}{7}' -f @(
                     $BaseUrl
                     $Tenant
                     'groups'
                     $GroupObject.objectId
                     'members'
                     $APIversion
+                    '&$top=' -f $ResultsPerPage
                     $SkipToken
                 )
                 $Params = @{
