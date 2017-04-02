@@ -34,13 +34,26 @@
 
         This will not limit the number of resutls retruned by the command.
     
+    .OUTPUTS
+        MSGraphAPI.DirectoryObject.User
+
+    .INPUTS
+        MSGraphAPI.DirectoryObject.Group
+    
     .EXAMPLE
         PS C:\> $AADGroupMembers = $AADGroup | Get-AADGroupMembers 
     
     .NOTES
         Additional information about the function.
+
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName
 #>
 function Get-AADGroupMember {
     [CmdletBinding(SupportsShouldProcess = $true,
@@ -65,7 +78,7 @@ function Get-AADGroupMember {
         
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateRange(1,999)]
-        [int32]$ResultsPerPage = 100
+        [int]$ResultsPerPage = 100
     )
     
     process {
@@ -85,7 +98,7 @@ function Get-AADGroupMember {
                     $GroupObject.objectId
                     'members'
                     $APIversion
-                    '&$top=' -f $ResultsPerPage
+                    '&$top={0}' -f $ResultsPerPage
                     $SkipToken
                 )
                 $Params = @{

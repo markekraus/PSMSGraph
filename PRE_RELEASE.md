@@ -7,6 +7,22 @@
 
 ### Get-AADGroupMember
 * Added ResultsPerPage Paramter to provide access to '$top' query filter.
+* Addeed .LINK to Get-AADGroupById
+* Addeed .LINK to Get-AADGroupByDisplayName
+* Added .INPUTS MSGraphAPI.DirectoryObject.Group
+* Added .OUTPUTS MSGraphAPI.DirectoryObject.User
+
+### Get-AADGroupById
+* Addeed .LINK to Get-AADGroupByDisplayName
+* Addeed .LINK to Get-AADGroupMember
+
+### Get-AADGroupByDisplayName
+* Addeed .LINK to Get-AADGroupMember
+* Addeed .LINK to Get-AADGroupById
 
 ### Get-GraphOauthAccessToken
 * Fixed Resource paramter documentation
+
+## Tests
+### Get-AADGroupMember.Unit.Tests.ps1
+* Created tests for Get-AADGroupMember
