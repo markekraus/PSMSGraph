@@ -98,53 +98,68 @@ $VerifyUrlMultiPage2 = @(
      '&$top=100'
      '&$skiptoken=page2'
 ) -Join ''
-$MockMembers = @(
-    [pscustomobject]@{
-        objectId = '596f00c9-9046-4f24-9768-cbff0202c05a'
-        DisplayName = 'Member1'
-    }
-    [pscustomobject]@{
-        objectId = 'd9b21eea-fb8b-4a69-a549-48cab600c35a'
-        DisplayName = 'Member2'
-    }
-    [pscustomobject]@{
-        objectId = '355e6c94-491d-46e9-baac-8c6af2bad943'
-        DisplayName = 'Member3'
-    }
-    [pscustomobject]@{
-        objectId = 'e36ce62f-d005-4b47-8312-6de0df22bfce'
-        DisplayName = 'Member4'
-    }
+$ValidUrls = @(
+    $VerifyUrl
+    $VerifyUrlMultiPage1
+    $VerifyUrlMultiPage2
 )
-$MockResponse = [pscustomobject]@{
-    ContentObject = [pscustomobject]@{
-        Value = $MockMembers[0..1]
-    }
-}
-$MockResponseMultiPage1 = [pscustomobject]@{
-    ContentObject = [pscustomobject]@{
-        'odata.nextLink' = 'hsagkgbkgakugksaskiptoken=page2'
-        Value = $MockMembers[0..1]
-    }
-}
-$MockResponseMultiPage2 = [pscustomobject]@{
-    ContentObject = [pscustomobject]@{
-        Value = $MockMembers[2..3]
-    }
-}
 
 Describe $Command -Tags Unit {
-    Mock -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$VerifyUrl, $VerifyUrlMultiPage1, $VerifyUrlMultiPage2 -notcontains $Uri} -MockWith {
-       Throw "$Uri not in `r`n$VerifyUrl `r`n$VerifyUrlMultiPage1 `r`n$VerifyUrlMultiPage2"
+    # Mock to send error when the Uri sent to Invoke-GraphRequest
+    Mock -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$ValidUrls -notcontains $Uri} -MockWith {
+       Throw "$Uri not in `r`n$($ValidUrls -join "`r`n ")"
     }
-    Mock -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $VerifyUrl} -MockWith {
+    Mock -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $ValidUrls[0]} -MockWith {
+        $MockResponse = [pscustomobject]@{
+            ContentObject = [pscustomobject]@{
+                Value = @(
+                    [pscustomobject]@{
+                        objectId = '596f00c9-9046-4f24-9768-cbff0202c05a'
+                        DisplayName = 'Member1'
+                    }
+                    [pscustomobject]@{
+                        objectId = 'd9b21eea-fb8b-4a69-a549-48cab600c35a'
+                        DisplayName = 'Member2'
+                    }
+                )
+            }
+        }
         return $MockResponse
     }
-    Mock -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $VerifyUrlMultiPage1} -MockWith {
-        return $MockResponseMultiPage1
+    Mock -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $ValidUrls[1]} -MockWith {
+        $MockResponse= [pscustomobject]@{
+            ContentObject = [pscustomobject]@{
+                'odata.nextLink' = 'hsagkgbkgakugksaskiptoken=page2'
+                Value = @(
+                    [pscustomobject]@{
+                        objectId = '596f00c9-9046-4f24-9768-cbff0202c05a'
+                        DisplayName = 'Member1'
+                    }
+                    [pscustomobject]@{
+                        objectId = 'd9b21eea-fb8b-4a69-a549-48cab600c35a'
+                        DisplayName = 'Member2'
+                    }
+                )
+            }
+        }
+        return $MockResponse
     }
-    Mock -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $VerifyUrlMultiPage2} -MockWith {
-        return $MockResponseMultiPage2
+    Mock -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $ValidUrls[2]} -MockWith {
+        $MockResponse = [pscustomobject]@{
+            ContentObject = [pscustomobject]@{
+                Value = @(
+                    [pscustomobject]@{
+                        objectId = '355e6c94-491d-46e9-baac-8c6af2bad943'
+                        DisplayName = 'Member3'
+                    }
+                    [pscustomobject]@{
+                        objectId = 'e36ce62f-d005-4b47-8312-6de0df22bfce'
+                        DisplayName = 'Member4'
+                    }
+                )
+            }
+        }
+        return $MockResponse
     }
     It 'Does not have errors when passed required parameters' {
         $LocalParams = $Params.psobject.Copy()
@@ -162,7 +177,7 @@ Describe $Command -Tags Unit {
     }
     It "Creates a $TypeName Object" {
         $LocalParams = $Params.psobject.Copy()
-        $Object = & $Command @LocalParams -ErrorAction SilentlyContinue | Select-Object -First 1
+        $Object = & $Command @LocalParams | Select-Object -First 1
         $Object.psobject.typenames.where({ $_ -eq $TypeName }) | Should be $TypeName
     }
     it "Paginates without error" {
@@ -175,11 +190,5 @@ Describe $Command -Tags Unit {
     }
     It "Called page2" {
         Assert-MockCalled -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $VerifyUrlMultiPage2} 
-    }
-    It "Returns $($MockMembers.Count) paginated objects" {
-        $LocalParams = $Params.psobject.Copy()
-        $LocalParams.Group = $GroupMultiPage
-        $Objects = & $Command @LocalParams -ErrorAction SilentlyContinue 
-        $Objects.Count | Should be $MockMembers.Count
     }
 }
