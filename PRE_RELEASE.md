@@ -26,3 +26,10 @@
 ## Tests
 ### Get-AADGroupMember.Unit.Tests.ps1
 * Created tests for Get-AADGroupMember
+
+
+### Import-GraphApplication.Unit.Tests.ps1
+* Created tests for Import-GraphApplication
+
+### Import-GraphOauthAccessToken.Unit.Tests.ps1
+* Created tests for Import-GraphOauthAccessToken

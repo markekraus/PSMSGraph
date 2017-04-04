@@ -3,9 +3,10 @@
 	===========================================================================
 	 Created with: 	VSCode
 	 Created on:   	4/2/2017 10:27 AM
+     Edited on:     4/4/2017
 	 Created by:   	Mark Kraus
 	 Organization: 	
-	 Filename:     	Get-AADGroupMember.Test.ps1
+	 Filename:     	Get-AADGroupMember.Unit.Tests.ps1
 	===========================================================================
 	.DESCRIPTION
 		Unit Tests for Get-AADGroupMember
