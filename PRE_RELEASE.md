@@ -33,3 +33,9 @@
 
 ### Import-GraphOauthAccessToken.Unit.Tests.ps1
 * Created tests for Import-GraphOauthAccessToken
+
+### Get-AADGroupById.Unit.Tests.ps1
+* Created tests for Get-AADGroupById
+
+### Get-AADGroupByDisplayName.Unit.Tests.ps1
+* Created tests for Get-AADGroupByDisplayName
