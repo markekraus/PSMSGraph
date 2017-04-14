@@ -162,3 +162,6 @@ Describe $Command -Tags Unit {
         $Object.psobject.typenames.where({ $_ -eq $TypeName }) | Should be $TypeName
     }
 }
+
+Remove-Variable -Scope Global -Name ResponseHeaders
+Remove-Variable -Scope Global -Name JSONResponse
