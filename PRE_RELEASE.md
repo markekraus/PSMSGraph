@@ -21,7 +21,10 @@
 * Addeed .LINK to Get-AADGroupById
 
 ### Get-GraphOauthAccessToken
+* **Breaking Change**: Removed ```ResultVariable``` and related debugging code that should never have been in production
+* Improved error reporting
 * Fixed Resource paramter documentation
+* Removed dangling "&" from $Body creation
 
 ## Tests
 ### Get-AADGroupMember.Unit.Tests.ps1
@@ -39,3 +42,6 @@
 
 ### Get-AADGroupByDisplayName.Unit.Tests.ps1
 * Created tests for Get-AADGroupByDisplayName
+
+### Get-GraphOauthAccessToken.Unit.Tests.ps1
+* Created tests for Get-GraphOauthAccessToken
