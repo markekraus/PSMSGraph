@@ -39,11 +39,18 @@
             Office 365 Unified Mail API: https://outlook.office.com
         
         If you need to access more than one resrouce, you will need to request multiple OAuth Access Tokens and use the correct tokens for the correct endpoints.
-    
-    .PARAMETER ResultVariable
-        Name of a varibale to store the result from the Invoke-WebRequest. This should be used for debugging only as it stores the access_token and refresh_tokens in memory as plain text.
-    
+
     .EXAMPLE
+        PS C:\> $ClientCredential = Get-Credential
+        PS C:\> $Params = @{
+        Name = 'MyGraphApp'
+        Description = 'My Graph Application!'
+        ClientCredential = $ClientCredential
+        RedirectUri = 'https://adataum/ouath?'
+        UserAgent = 'Windows:PowerShell:GraphApplication'
+        }
+        PS C:\> $GraphApp = New-GraphApplication @Params
+        PS C:\> $GraphAuthCode = Get-GraphOauthAuthorizationCode -Application $GraphApp 
         PS C:\> $GraphAccessToken = Get-GraphOauthAccessToken -AuthenticationCode $GraphAuthCode
     
     .OUTPUTS
