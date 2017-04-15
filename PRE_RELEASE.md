@@ -22,9 +22,11 @@
 
 ### Get-GraphOauthAccessToken
 * **Breaking Change**: Removed ```ResultVariable``` and related debugging code that should never have been in production
+* Removed ```ResultVariable``` parameter help
 * Improved error reporting
-* Fixed Resource paramter documentation
-* Removed dangling "&" from $Body creation
+* Fixed ```Resource``` parameter documentation
+* Imrpoved Example
+* Removed dangling ```&``` from ```$Body``` creation
 
 ## Tests
 ### Get-AADGroupMember.Unit.Tests.ps1
