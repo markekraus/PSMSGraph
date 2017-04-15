@@ -38,6 +38,12 @@
         MSGraphAPI.DirectoryObject.Group
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID
+    
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName   
 #>
 function Get-AADGroupByID {
     [CmdletBinding(SupportsShouldProcess = $true,

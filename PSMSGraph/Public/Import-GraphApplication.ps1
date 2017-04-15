@@ -3,6 +3,7 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/8/2017 8:32 AM
+     Edited on:     3/30/2017
 	 Created by:   	Mark Kraus
 	 Organization: 	Mitel
 	 Filename:     	Import-GraphApplication.ps1
@@ -79,8 +80,18 @@ function Import-GraphApplication {
             if ($pscmdlet.ShouldProcess($ImportFile)) {
                 $Params = @{
                     "$ImportParam" = $ImportFile
+                    ErrorAction = 'Stop'
                 }
-                $InObject = Import-Clixml @Params
+                try {
+                    $InObject = Import-Clixml @Params
+                }
+                catch {
+                    $ErrorMessage = "Unable to import from '{0}': {1}" -f @(
+                        $ImportFile
+                        $_.Exception.Message
+                    )
+                    Write-Error $ErrorMessage
+                }
                 $InObject | New-GraphApplication
             } #End Should Process
         } #End Foreach

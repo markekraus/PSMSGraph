@@ -36,9 +36,15 @@
     
     .OUTPUTS
         MSGraphAPI.DirectoryObject.ServicePrincipal
-    
+
     .LINK
-        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName    
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID
 #>
 function Get-AADGroupByDisplayName {
     [CmdletBinding(SupportsShouldProcess = $true,

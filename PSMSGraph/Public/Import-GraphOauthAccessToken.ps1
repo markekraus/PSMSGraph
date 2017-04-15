@@ -3,6 +3,7 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/9/2017 6:55 AM
+     Edited on:     3/30/2017
 	 Created by:   	Mark Kraus
 	 Organization: 	Mitel
 	 Filename:     	Import-GraphOauthAccessToken.ps1
@@ -77,8 +78,18 @@ function Import-GraphOauthAccessToken {
                 Write-Verbose "Processing $($ImportFile)."
                 $Params = @{
                     "$($PsCmdlet.ParameterSetName)" = $ImportFile
+                    ErrorAction = 'Stop'
                 }
-                $InObject = Import-Clixml @Params
+                try {
+                    $InObject = Import-Clixml @Params
+                }
+                Catch {
+                    $ErrorMessage = "Unable to import from '{0}': {1}" -f @(
+                        $ImportFile
+                        $_.Exception.Message
+                    )
+                    Write-Error $ErrorMessage
+                }
                 Write-Verbose "Reconstituting Application object"
                 $Application = $InObject.Application | New-GraphApplication
                 Write-Verbose 'Reconstituting Session object'

@@ -3,6 +3,7 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/8/2017 10:26 AM
+     Edited on::    4/15/2017
 	 Created by:   	Mark Kraus
 	 Organization: 	Mitel
 	 Filename:     	Get-GraphOauthAccessToken.ps1
@@ -33,16 +34,23 @@
     
         You must set the resource to match the endpoints your token will be valid for.
 
-            Microsft Graph:              https://outlook.office.com
+            Microsft Graph:              https://graph.microsoft.com
             Azure AD Graph API:          https://graph.windows.net
             Office 365 Unified Mail API: https://outlook.office.com
         
         If you need to access more than one resrouce, you will need to request multiple OAuth Access Tokens and use the correct tokens for the correct endpoints.
-    
-    .PARAMETER ResultVariable
-        Name of a varibale to store the result from the Invoke-WebRequest. This should be used for debugging only as it stores the access_token and refresh_tokens in memory as plain text.
-    
+
     .EXAMPLE
+        PS C:\> $ClientCredential = Get-Credential
+        PS C:\> $Params = @{
+        Name = 'MyGraphApp'
+        Description = 'My Graph Application!'
+        ClientCredential = $ClientCredential
+        RedirectUri = 'https://adataum/ouath?'
+        UserAgent = 'Windows:PowerShell:GraphApplication'
+        }
+        PS C:\> $GraphApp = New-GraphApplication @Params
+        PS C:\> $GraphAuthCode = Get-GraphOauthAuthorizationCode -Application $GraphApp 
         PS C:\> $GraphAccessToken = Get-GraphOauthAccessToken -AuthenticationCode $GraphAuthCode
     
     .OUTPUTS
@@ -87,11 +95,7 @@ function Get-GraphOauthAccessToken {
         
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
-        [string]$Resource = 'https://graph.microsoft.com',
-        
-        [Parameter(Mandatory = $false)]
-        [ValidateNotNullOrEmpty()]
-        [string]$ResultVariable
+        [string]$Resource = 'https://graph.microsoft.com'
     )
     
     Process {
@@ -105,7 +109,7 @@ function Get-GraphOauthAccessToken {
         $AuthCode = [System.Web.HttpUtility]::UrlEncode($AuthenticationCode.GetAuthCode())
         $Body = @(
             'grant_type=authorization_code'
-            '&redirect_uri={0}&' -f $Redirect_uri
+            '&redirect_uri={0}' -f $Redirect_uri
             '&client_id={0}' -f $Client_Id
             '&code={0}' -f $AuthCode
             '&resource={0}' -f $Resource_encoded
@@ -125,15 +129,16 @@ function Get-GraphOauthAccessToken {
         try {
             Write-Verbose "Retrieving OAuth Access Token from $BaseURL..."
             $Result = Invoke-WebRequest @Params
-            if ($ResultVariable) {
-                Write-Verbose "Setting result variable '$ResultVariable'"
-                Set-Variable -Name $ResultVariable -Scope 'Global' -Value $Result
-            }
         }
         catch {
-            $ErrorMessage = $_.Exception.Message
-            $Message = "Requesting OAuth Access Token Failed: {0} " -f $ErrorMessage
-            Write-Error -Message $Message
+            $response = $_.Exception.Response
+            $Stream = $response.GetResponseStream()
+            $Stream.Position = 0
+            $StreamReader = New-Object System.IO.StreamReader $Stream
+            $ResponseBody = $StreamReader.ReadToEnd()
+            $ErrorMessage = "Requesting OAuth Access Token from '{0}' Failed: {1}: {2}" -f $BaseURL, 
+                $_.Exception.Message, $ResponseBody
+            Write-Error -message $ErrorMessage -Exception $_.Exception
             return
         }
         try {
@@ -141,9 +146,14 @@ function Get-GraphOauthAccessToken {
         }
         Catch {
             $ErrorMessage = $_.Exception.Message
+            $Params = @{
+                MemberType = 'NoteProperty'
+                Name = 'Respone' 
+                Value = $Result
+            }
+            $_.Exception | Add-Member @Params
             $Message = "Failed to convert response from JSON: {0}" -f $ErrorMessage
-            Write-Error $Message
-            Write-Error $Result.Content
+            Write-Error -Exception $_.Exception -Message $Message
             return
         }
         $AccessTokenCredential = [pscredential]::new('access_token', $($Content.access_token | ConvertTo-SecureString -AsPlainText -Force))
