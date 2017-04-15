@@ -1,3 +1,6 @@
+## Module Manifest
+* Cleaned up white space at end of file
+
 ## Functions
 ### Import-GraphApplication
 * Now provides its own error instead of Import-clixml
@@ -36,7 +39,6 @@
 ## Tests
 ### Get-AADGroupMember.Unit.Tests.ps1
 * Created tests for Get-AADGroupMember
-
 
 ### Import-GraphApplication.Unit.Tests.ps1
 * Created tests for Import-GraphApplication
