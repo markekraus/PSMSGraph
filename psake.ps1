@@ -281,9 +281,14 @@ Task PostDeploy -depends Deploy {
     
     "git status"
     cmd /c "git status 2>&1"
-    
-    "git push origin $ENV:BHBranchName"
-    cmd /c "git push origin $ENV:BHBranchName 2>&1"
+    # Do not recommit to staging so that clean pull request can be perfomred
+    if ( 
+        $ENV:BHBranchName -notlike "staging" -or 
+        $ENV:BHCommitMessage -match '!skiprecommit'
+    ){
+        "git push origin $ENV:BHBranchName"
+        cmd /c "git push origin $ENV:BHBranchName 2>&1"
+    }    
     # if this is a !deploy on master, create GitHub release
     if (
         $ENV:BHBuildSystem -ne 'Unknown' -and
