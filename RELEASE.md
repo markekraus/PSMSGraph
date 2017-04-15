@@ -28,6 +28,11 @@
 * Imrpoved Example
 * Removed dangling ```&``` from ```$Body``` creation
 
+## Build Tools
+### psake.ps1
+* Block ```staging``` branch recommits so clean pull requests can be made
+* Add ```!skiprecommit``` commit tag to block recommits
+
 ## Tests
 ### Get-AADGroupMember.Unit.Tests.ps1
 * Created tests for Get-AADGroupMember
