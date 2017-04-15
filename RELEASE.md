@@ -1,3 +1,4 @@
+# Version 1.0.24.41 (2017-04-15)
 ## Module Manifest
 * Cleaned up white space at end of file
 

@@ -6,7 +6,8 @@ Returns the members for the given Group
 ## SYNTAX
 
 ```
-Get-AADGroupMember [-Group] <Object[]> [[-BaseUrl] <String>] [[-APIVersion] <String>] [-WhatIf] [-Confirm]
+Get-AADGroupMember [-Group] <Object[]> [[-BaseUrl] <String>] [[-APIVersion] <String>]
+ [[-ResultsPerPage] <Int32>] [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
@@ -70,6 +71,26 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -ResultsPerPage
+The number of results to request from the API per call.
+This is the '$top' API query filter.
+Default is 100.
+Valid Range is 1-999.
+
+This will not limit the number of resutls retruned by the command.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: 4
+Default value: 100
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
@@ -103,6 +124,8 @@ Accept wildcard characters: False
 
 ## INPUTS
 
+### MSGraphAPI.DirectoryObject.Group
+
 ## OUTPUTS
 
 ### MSGraphAPI.DirectoryObject.User
@@ -113,4 +136,8 @@ Additional information about the function.
 ## RELATED LINKS
 
 [http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName)
 

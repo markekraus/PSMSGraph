@@ -6,8 +6,8 @@ Retieves an OAuth Access Token from Microsoft
 ## SYNTAX
 
 ```
-Get-GraphOauthAccessToken [-AuthenticationCode] <Object> [[-BaseURL] <String>] [[-Resource] <String>]
- [[-ResultVariable] <String>] [-WhatIf] [-Confirm]
+Get-GraphOauthAccessToken [-AuthenticationCode] <Object> [[-BaseURL] <String>] [[-Resource] <String>] [-WhatIf]
+ [-Confirm]
 ```
 
 ## DESCRIPTION
@@ -17,8 +17,19 @@ A detailed description of the Get-GraphOauthAccessToken function.
 
 ### -------------------------- EXAMPLE 1 --------------------------
 ```
-$GraphAccessToken = Get-GraphOauthAccessToken -AuthenticationCode $GraphAuthCode
+$ClientCredential = Get-Credential
 ```
+
+PS C:\\\> $Params = @{
+Name = 'MyGraphApp'
+Description = 'My Graph Application!'
+ClientCredential = $ClientCredential
+RedirectUri = 'https://adataum/ouath?'
+UserAgent = 'Windows:PowerShell:GraphApplication'
+}
+PS C:\\\> $GraphApp = New-GraphApplication @Params
+PS C:\\\> $GraphAuthCode = Get-GraphOauthAuthorizationCode -Application $GraphApp 
+PS C:\\\> $GraphAccessToken = Get-GraphOauthAccessToken -AuthenticationCode $GraphAuthCode
 
 ## PARAMETERS
 
@@ -64,7 +75,7 @@ The default is
 
 You must set the resource to match the endpoints your token will be valid for.
 
-    Microsft Graph:              https://outlook.office.com
+    Microsft Graph:              https://graph.microsoft.com
     Azure AD Graph API:          https://graph.windows.net
     Office 365 Unified Mail API: https://outlook.office.com
 
@@ -79,22 +90,6 @@ Required: False
 Position: 3
 Default value: Https://graph.microsoft.com
 Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -ResultVariable
-Name of a varibale to store the result from the Invoke-WebRequest.
-This should be used for debugging only as it stores the access_token and refresh_tokens in memory as plain text.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: 
-
-Required: False
-Position: 4
-Default value: None
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

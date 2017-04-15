@@ -130,3 +130,7 @@ Accept wildcard characters: False
 
 [http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName)
 
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID)
+
