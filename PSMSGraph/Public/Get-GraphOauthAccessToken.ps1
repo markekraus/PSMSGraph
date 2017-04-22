@@ -142,7 +142,6 @@ function Get-GraphOauthAccessToken {
             $Content = $Result.Content | ConvertFrom-Json -ErrorAction Stop
         }
         Catch {
-            $ErrorMessage = $_.Exception.Message
             $Params = @{
                 MemberType = 'NoteProperty'
                 Name = 'Respone' 
@@ -152,8 +151,10 @@ function Get-GraphOauthAccessToken {
             Write-Error -Exception $_.Exception
             return
         }
-        $AccessTokenCredential = [pscredential]::new('access_token', $($Content.access_token | ConvertTo-SecureString -AsPlainText -Force))
-        $RefreshTokenCredential = [pscredential]::new('refresh_token', $($Content.refresh_token | ConvertTo-SecureString -AsPlainText -Force))
+        $SecureAccessToken = $Content.access_token | ConvertTo-SecureString -AsPlainText -Force
+        $SecureRefreshToken = $Content.refresh_token | ConvertTo-SecureString -AsPlainText -Force
+        $AccessTokenCredential = [pscredential]::new('access_token', $SecureAccessToken )
+        $RefreshTokenCredential = [pscredential]::new('refresh_token', $SecureRefreshToken)
         $Params = @{
             Application = $Application
             AccessTokenCredential = $AccessTokenCredential
