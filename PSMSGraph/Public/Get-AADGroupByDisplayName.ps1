@@ -101,8 +101,8 @@ function Get-AADGroupByDisplayName {
                 $Result = Invoke-GraphRequest @Params
             }
             catch {
-                $ErrorMessage = "Unable to query User '{0}': {1}" -f $UserId, $_.Exception.Message
-                Write-Error $ErrorMessage
+                $ErrorMessage = "Unable to query Group '{0}': {1}" -f $GroupName, $_.Exception.Message
+                Write-Error -Message $ErrorMessage -Exception $_.Exception
                 return
             }
             foreach ($ServiceObject in $Result.ContentObject.value) {
