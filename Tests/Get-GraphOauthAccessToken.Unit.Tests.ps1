@@ -3,7 +3,7 @@
 	===========================================================================
 	 Created with: 	VSCode
 	 Created on:   	4/13/2017 04:25 AM
-     Edited on:     
+     Edited on:     4/22/2017
 	 Created by:   	Mark Kraus
 	 Organization: 	
 	 Filename:     	Get-GraphOauthAccessToken.Unit.Tests.ps1
@@ -47,6 +47,28 @@ $AuthCode = [pscustomobject]@{
     AuthCodeBaseURL = 'https://login.microsoftonline.com/common/oauth2/authorize'
     Issued = Get-date
 }
+$BadAuthCodeSecret = '09876'
+$SecBadAuthCodeSecret = $BadAuthCodeSecret | ConvertTo-SecureString -AsPlainText -Force
+$BadAuthCodeCredential = [system.Management.Automation.PSCredential]::new('AuthCode', $SecBadAuthCodeSecret)
+$BadAuthCode = [pscustomobject]@{
+    PSTypeName = 'MSGraphAPI.Oauth.AuthorizationCode'
+    AuthCodeCredential = $BadAuthCodeCredential
+    ResultURL = 'https://loclahost2'
+    Application = $App
+    AuthCodeBaseURL = 'https://login.microsoftonline.com/common/oauth2/authorize'
+    Issued = Get-date
+}
+$BadJSONAuthCodeSecret = '54321'
+$SecBadJSONAuthCodeSecret = $BadJSONAuthCodeSecret | ConvertTo-SecureString -AsPlainText -Force
+$BadJSONAuthCodeCredential = [system.Management.Automation.PSCredential]::new('AuthCode', $SecBadJSONAuthCodeSecret)
+$BadJSONAuthCode = [pscustomobject]@{
+    PSTypeName = 'MSGraphAPI.Oauth.AuthorizationCode'
+    AuthCodeCredential = $BadJSONAuthCodeCredential
+    ResultURL = 'https://loclahost2'
+    Application = $App
+    AuthCodeBaseURL = 'https://login.microsoftonline.com/common/oauth2/authorize'
+    Issued = Get-date
+}
 
 $Params = @{
     AuthenticationCode = $AuthCode
@@ -63,8 +85,26 @@ $VerifyBody = @(
      '&resource=https%3a%2f%2fgraph.microsoft.com' 
      '&client_secret=54321'
 ) -Join ''
+$VerifyBadBody = @(
+     'grant_type=authorization_code'
+     '&redirect_uri=https%3a%2f%2flocalhost'
+     '&client_id=12345'
+     '&code=09876'
+     '&resource=https%3a%2f%2fgraph.microsoft.com' 
+     '&client_secret=54321'
+) -Join ''
+$VerifyBadJSONBody = @(
+     'grant_type=authorization_code'
+     '&redirect_uri=https%3a%2f%2flocalhost'
+     '&client_id=12345'
+     '&code=54321'
+     '&resource=https%3a%2f%2fgraph.microsoft.com' 
+     '&client_secret=54321'
+) -Join ''
 $ValidBodies = @(
     $VerifyBody
+    $VerifyBadBody
+    $VerifyBadJSONBody
 )
 
 $JWT = @( 
@@ -142,6 +182,25 @@ Describe $Command -Tags Unit {
         }
         return $MockResponse
     }
+    Mock -CommandName Invoke-WebRequest -ModuleName PSMSGraph -ParameterFilter {$Body -eq $ValidBodies[1]} -MockWith {
+        $Params = {
+            Uri = $Uri
+            Method = $Method
+            ErrorAction = 'Stop'
+            Body = $bode
+            ContentType = $ContentType
+            Session = $Session
+            UseBasicParsing = $true
+        }
+        Microsoft.PowerShell.Utility\Invoke-WebRequest @Params
+    }
+    Mock -CommandName Invoke-WebRequest -ModuleName PSMSGraph -ParameterFilter {$Body -eq $ValidBodies[2]} -MockWith {
+        $MockResponse = [pscustomobject]@{
+            Content = 'This is bad JSON'
+            Headers = $Global:ResponseHeaders 
+        }
+        return $MockResponse
+    }
     It 'Does not have errors when passed required parameters' {
         $LocalParams = $Params.psobject.Copy()
         { & $Command @LocalParams -ErrorAction Stop } | Should not throw
@@ -161,7 +220,22 @@ Describe $Command -Tags Unit {
         $Object = & $Command @LocalParams | Select-Object -First 1
         $Object.psobject.typenames.where({ $_ -eq $TypeName }) | Should be $TypeName
     }
+    It "Throws a MSGraphAPI.Oauth.Exception exception on Invoke-WebRequest erros." {
+        $LocalParams = $Params.psobject.Copy()
+        $LocalParams.AuthenticationCode = $BadAuthCode
+        Try{
+            & $Command @LocalParams -ErrorAction Stop 
+        }
+        Catch{
+            $Exception = $_
+        } 
+        $Exception.Exception.psobject.typenames -contains 'MSGraphAPI.Oauth.Exception' | should be $true        
+    }
+    It "Throws an exception on JSON parse erros." {
+        $LocalParams = $Params.psobject.Copy()
+        $LocalParams.AuthenticationCode = $BadJSONAuthCode
+        { & $Command @LocalParams -ErrorAction Stop } | should throw 'Invalid JSON'
+    }    
 }
-
 Remove-Variable -Scope Global -Name ResponseHeaders
 Remove-Variable -Scope Global -Name JSONResponse

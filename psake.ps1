@@ -1,3 +1,17 @@
+<#	
+	.NOTES
+	===========================================================================
+	 Created with: 	Unknown
+	 Created on:   	Unknown
+     Edited on::    4/22/2017
+	 Created by:   	Unknown
+	 Organization: 	
+	 Filename:     	psake.ps1
+     oriringal:     https://github.com/KevinMarquette/PSGraph/blob/master/psake.ps1
+	===========================================================================
+	.DESCRIPTION
+		psake Build Automation
+#>
 # PSake makes variables declared here available in other scriptblocks
 # Init some things
 Properties {
@@ -283,8 +297,15 @@ Task PostDeploy -depends Deploy {
     cmd /c "git status 2>&1"
     # Do not recommit to staging so that clean pull request can be perfomred
     if ( 
-        $ENV:BHBranchName -notlike "staging" -or 
-        $ENV:BHCommitMessage -match '!skiprecommit'
+        $ENV:BHCommitMessage -notmatch '!skiprecommit' -and 
+        (
+            $ENV:BHCommitMessage -match '!forcerecommit' -or
+            (
+                $ENV:BHBranchName -notlike "staging" -and
+                $ENV:BHBranchName -notlike "develop"
+                
+            )
+        )
     ){
         "git push origin $ENV:BHBranchName"
         cmd /c "git push origin $ENV:BHBranchName 2>&1"
