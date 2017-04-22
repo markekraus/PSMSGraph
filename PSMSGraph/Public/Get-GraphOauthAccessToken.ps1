@@ -131,14 +131,11 @@ function Get-GraphOauthAccessToken {
             $Result = Invoke-WebRequest @Params
         }
         catch {
-            $response = $_.Exception.Response
-            $Stream = $response.GetResponseStream()
-            $Stream.Position = 0
-            $StreamReader = New-Object System.IO.StreamReader $Stream
-            $ResponseBody = $StreamReader.ReadToEnd()
-            $ErrorMessage = "Requesting OAuth Access Token from '{0}' Failed: {1}: {2}" -f $BaseURL, 
-                $_.Exception.Message, $ResponseBody
-            Write-Error -message $ErrorMessage -Exception $_.Exception
+            $_.Exception.
+                psobject.
+                TypeNames.
+                Insert(0,'MSGraphAPI.Oauth.Exception')
+            Write-Error -Exception $_.Exception
             return
         }
         try {
