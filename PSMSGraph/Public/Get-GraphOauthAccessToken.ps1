@@ -3,9 +3,9 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/8/2017 10:26 AM
-     Edited on::    4/15/2017
+     Edited on::    4/22/2017
 	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
+	 Organization: 	
 	 Filename:     	Get-GraphOauthAccessToken.ps1
 	===========================================================================
 	.DESCRIPTION
@@ -164,7 +164,6 @@ function Get-GraphOauthAccessToken {
             ResponseHeaders = $Result.Headers
             LastRequestDate = $RequestedDate
             Session = $Session
-            #ResultObject = $Result
             GUID = [guid]::NewGuid()
         }
         New-GraphOauthAccessToken @Params
