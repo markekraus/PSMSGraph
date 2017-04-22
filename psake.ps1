@@ -283,12 +283,15 @@ Task PostDeploy -depends Deploy {
     cmd /c "git status 2>&1"
     # Do not recommit to staging so that clean pull request can be perfomred
     if ( 
-        $ENV:BHCommitMessage -match '!forcerecommit' -or
+        $ENV:BHCommitMessage -notmatch '!skiprecommit' -and 
         (
-            $ENV:BHBranchName -notlike "staging" -and
-            $ENV:BHBranchName -notlike "develop" -and
-            $ENV:BHCommitMessage -match '!skiprecommit'
-        )        
+            $ENV:BHCommitMessage -match '!forcerecommit' -or
+            (
+                $ENV:BHBranchName -notlike "staging" -and
+                $ENV:BHBranchName -notlike "develop"
+                
+            )
+        )
     ){
         "git push origin $ENV:BHBranchName"
         cmd /c "git push origin $ENV:BHBranchName 2>&1"
