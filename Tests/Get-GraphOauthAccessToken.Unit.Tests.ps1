@@ -58,6 +58,17 @@ $BadAuthCode = [pscustomobject]@{
     AuthCodeBaseURL = 'https://login.microsoftonline.com/common/oauth2/authorize'
     Issued = Get-date
 }
+$BadJSONAuthCodeSecret = '54321'
+$SecBadJSONAuthCodeSecret = $BadJSONAuthCodeSecret | ConvertTo-SecureString -AsPlainText -Force
+$BadJSONAuthCodeCredential = [system.Management.Automation.PSCredential]::new('AuthCode', $SecBadJSONAuthCodeSecret)
+$BadJSONAuthCode = [pscustomobject]@{
+    PSTypeName = 'MSGraphAPI.Oauth.AuthorizationCode'
+    AuthCodeCredential = $BadJSONAuthCodeCredential
+    ResultURL = 'https://loclahost2'
+    Application = $App
+    AuthCodeBaseURL = 'https://login.microsoftonline.com/common/oauth2/authorize'
+    Issued = Get-date
+}
 
 $Params = @{
     AuthenticationCode = $AuthCode
@@ -82,9 +93,18 @@ $VerifyBadBody = @(
      '&resource=https%3a%2f%2fgraph.microsoft.com' 
      '&client_secret=54321'
 ) -Join ''
+$VerifyBadJSONBody = @(
+     'grant_type=authorization_code'
+     '&redirect_uri=https%3a%2f%2flocalhost'
+     '&client_id=12345'
+     '&code=54321'
+     '&resource=https%3a%2f%2fgraph.microsoft.com' 
+     '&client_secret=54321'
+) -Join ''
 $ValidBodies = @(
     $VerifyBody
-    $VerifyBadBody 
+    $VerifyBadBody
+    $VerifyBadJSONBody
 )
 
 $JWT = @( 
@@ -174,6 +194,13 @@ Describe $Command -Tags Unit {
         }
         Microsoft.PowerShell.Utility\Invoke-WebRequest @Params
     }
+    Mock -CommandName Invoke-WebRequest -ModuleName PSMSGraph -ParameterFilter {$Body -eq $ValidBodies[2]} -MockWith {
+        $MockResponse = [pscustomobject]@{
+            Content = 'This is bad JSON'
+            Headers = $Global:ResponseHeaders 
+        }
+        return $MockResponse
+    }
     It 'Does not have errors when passed required parameters' {
         $LocalParams = $Params.psobject.Copy()
         { & $Command @LocalParams -ErrorAction Stop } | Should not throw
@@ -193,7 +220,7 @@ Describe $Command -Tags Unit {
         $Object = & $Command @LocalParams | Select-Object -First 1
         $Object.psobject.typenames.where({ $_ -eq $TypeName }) | Should be $TypeName
     }
-    It "Throws a MSGraphAPI.Oauth.Exception exception on web erros." {
+    It "Throws a MSGraphAPI.Oauth.Exception exception on Invoke-WebRequest erros." {
         $LocalParams = $Params.psobject.Copy()
         $LocalParams.AuthenticationCode = $BadAuthCode
         Try{
@@ -204,6 +231,11 @@ Describe $Command -Tags Unit {
         } 
         $Exception.Exception.psobject.typenames -contains 'MSGraphAPI.Oauth.Exception' | should be $true        
     }
+    It "Throws an exception on JSON parse erros." {
+        $LocalParams = $Params.psobject.Copy()
+        $LocalParams.AuthenticationCode = $BadJSONAuthCode
+        { & $Command @LocalParams -ErrorAction Stop } | should throw 'Invalid JSON'
+    }    
 }
 Remove-Variable -Scope Global -Name ResponseHeaders
 Remove-Variable -Scope Global -Name JSONResponse
