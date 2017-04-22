@@ -17,7 +17,11 @@
         Retieves an OAuth Access Token from Microsoft
     
     .DESCRIPTION
-        A detailed description of the Get-GraphOauthAccessToken function.
+        Takes an OAuth Acces Authorization code returned from Get-GraphOauthAuthorizationCode and
+        requests an OAuth Access Token for the provided resource from Microsoft. A
+        MSGraphAPI.Oauth.AccessToken object is returned. This object is required for making calls
+        to Invoke-GraphRequest and many other functions provided by this module.
+
     
     .PARAMETER AuthenticationCode
         The Authentication Code returned from Get-GraphOauthAuthorizationCode
@@ -38,7 +42,8 @@
             Azure AD Graph API:          https://graph.windows.net
             Office 365 Unified Mail API: https://outlook.office.com
         
-        If you need to access more than one resrouce, you will need to request multiple OAuth Access Tokens and use the correct tokens for the correct endpoints.
+        If you need to access more than one resrouce, you will need to request multiple OAuth Access 
+        Tokens and use the correct tokens for the correct endpoints.
 
     .EXAMPLE
         PS C:\> $ClientCredential = Get-Credential
@@ -57,12 +62,15 @@
         MSGraphAPI.Oauth.AccessToken
     
     .NOTES
+        See Get-GraphOauthAuthorizationCode for obtaining a OAuth Authorization code.
         See Export-GraphOauthAccessToken for exporting Graph Acess Token Objects
         See Import-GraphOauthAccessToken for importing exported Graph AcessToken Objects
         See Update-GraphOauthAccessToken for refreshing the Graph Access Token
     
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAuthorizationCode
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken
     .LINK
