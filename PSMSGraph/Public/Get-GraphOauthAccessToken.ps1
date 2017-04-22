@@ -149,8 +149,7 @@ function Get-GraphOauthAccessToken {
                 Value = $Result
             }
             $_.Exception | Add-Member @Params
-            $Message = "Failed to convert response from JSON: {0}" -f $ErrorMessage
-            Write-Error -Exception $_.Exception -Message $Message
+            Write-Error -Exception $_.Exception
             return
         }
         $AccessTokenCredential = [pscredential]::new('access_token', $($Content.access_token | ConvertTo-SecureString -AsPlainText -Force))
