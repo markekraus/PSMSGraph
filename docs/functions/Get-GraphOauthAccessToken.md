@@ -11,7 +11,12 @@ Get-GraphOauthAccessToken [-AuthenticationCode] <Object> [[-BaseURL] <String>] [
 ```
 
 ## DESCRIPTION
-A detailed description of the Get-GraphOauthAccessToken function.
+Takes an OAuth Acces Authorization code returned from Get-GraphOauthAuthorizationCode and
+requests an OAuth Access Token for the provided resource from Microsoft.
+A
+MSGraphAPI.Oauth.AccessToken object is returned.
+This object is required for making calls
+to Invoke-GraphRequest and many other functions provided by this module.
 
 ## EXAMPLES
 
@@ -79,7 +84,8 @@ You must set the resource to match the endpoints your token will be valid for.
     Azure AD Graph API:          https://graph.windows.net
     Office 365 Unified Mail API: https://outlook.office.com
 
-If you need to access more than one resrouce, you will need to request multiple OAuth Access Tokens and use the correct tokens for the correct endpoints.
+If you need to access more than one resrouce, you will need to request multiple OAuth Access 
+Tokens and use the correct tokens for the correct endpoints.
 
 ```yaml
 Type: String
@@ -131,6 +137,7 @@ Accept wildcard characters: False
 ### MSGraphAPI.Oauth.AccessToken
 
 ## NOTES
+See Get-GraphOauthAuthorizationCode for obtaining a OAuth Authorization code.
 See Export-GraphOauthAccessToken for exporting Graph Acess Token Objects
 See Import-GraphOauthAccessToken for importing exported Graph AcessToken Objects
 See Update-GraphOauthAccessToken for refreshing the Graph Access Token
@@ -138,6 +145,8 @@ See Update-GraphOauthAccessToken for refreshing the Graph Access Token
 ## RELATED LINKS
 
 [http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAuthorizationCode](http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAuthorizationCode)
 
 [http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken)
 

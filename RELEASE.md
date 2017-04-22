@@ -1,3 +1,4 @@
+# Version 1.0.25.42 (2017-04-22)
 ## Functions
 ### Get-GraphOauthAccessToken
 * Revised Invoke-WebRequest error handling. Now uses ```MSGraphAPI.Oauth.Exception``` to handle formating
