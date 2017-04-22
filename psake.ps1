@@ -1,3 +1,17 @@
+<#	
+	.NOTES
+	===========================================================================
+	 Created with: 	Unknown
+	 Created on:   	Unknown
+     Edited on::    4/22/2017
+	 Created by:   	Unknown
+	 Organization: 	
+	 Filename:     	psake.ps1
+     oriringal:     https://github.com/KevinMarquette/PSGraph/blob/master/psake.ps1
+	===========================================================================
+	.DESCRIPTION
+		psake Build Automation
+#>
 # PSake makes variables declared here available in other scriptblocks
 # Init some things
 Properties {
