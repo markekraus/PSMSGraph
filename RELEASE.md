@@ -12,6 +12,7 @@
 ### Get-GraphOauthAccessToken.Unit.Tests.ps1
 * Added missing code coverage for Invoke-webRequest error handling
 * Add missing code coverage for JSON parsing error handling
+* Now at 100% code coverage for Get-GraphOauthAccessToken
 
 ## Built Toolds
 ### psake.ps1
