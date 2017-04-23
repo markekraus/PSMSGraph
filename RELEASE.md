@@ -3,10 +3,17 @@
 * Fix error message to say Group instead of uuser and actually put the group name in the error
 * ```Write-Error``` now includes original exception with error message
 
+### Get-AADGroupById
+* ```Write-Error``` now includes original exception with error message
+
 ## Tests
 ### Get-AADGroupByDisplayName.Unit.Tests.ps1
 * Added missing code coverage for ```Invoke-GrapRequest``` error handling
 * Now has 100% code coverage for ```Get-AADGroupByDisplayName```
+
+### Get-AADGroupById.Unit.Tests.ps1
+* Added missing code coverage for ```Invoke-GrapRequest``` error handling
+* Now has 100% code coverage for ```Get-AADGroupById```
 
 ## Documentation
 ### Get-AADGroupByDisplayName
