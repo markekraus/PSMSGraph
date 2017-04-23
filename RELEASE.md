@@ -26,3 +26,14 @@
     + ```Get-GraphOauthAccessToken```
     + MSDN AAD Graph Group Operations
     + MSDN AAD Graph Filter parameter
+
+### Get-AADGroupById
+* Re-worded synopsis
+* Add more helpful description
+* Added clarity about the required reource for Access Tokens
+* Added clarity on what ObjectID is required
+* Fixed typo in ```APIVersion``` parameter
+* Added the following links:
+    + ```Get-GraphOauthAccessToken```
+    + MSDN AAD Graph Group Operations
+    + MSDN AAD Graph Filter parameter
