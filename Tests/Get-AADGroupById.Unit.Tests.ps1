@@ -71,9 +71,17 @@ $VerifyUrl = @(
      'c57cdc98-0dcd-4f90-a82f-c911b288bab9'
      '?api-version=1.6'
 ) -Join ''
+$VerifyBadUrl = @(
+     'https://graph.windows.net/'
+     $AppParams.Tenant
+     '/groups/'
+     'BadGroupId'
+     '?api-version=1.6'
+) -Join ''
 
 $ValidUrls = @(
     $VerifyUrl
+    $VerifyBadUrl
 )
 # https://msdn.microsoft.com/en-us/library/azure/ad/graph/api/groups-operations
 $Global:AADGroupJSON = @'
@@ -109,6 +117,9 @@ Describe $Command -Tags Unit {
         }
         return $MockResponse
     }
+    Mock -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $ValidUrls[1]} -MockWith {
+        Throw 'Invalid Group'
+    }
     It 'Does not have errors when passed required parameters' {
         $LocalParams = $Params.psobject.Copy()
         { & $Command @LocalParams -ErrorAction Stop } | Should not throw
@@ -132,6 +143,11 @@ Describe $Command -Tags Unit {
         $LocalParams = $Params.psobject.Copy()
         $Object = & $Command @LocalParams | Select-Object -First 1
         $Object._AccessToken.GUID | should be $Token.GUID
+    }
+    It 'Provides friendly errors' {
+         $LocalParams = $Params.psobject.Copy()
+         $LocalParams.ObjectId = 'BadGroupId'
+        { & $Command @LocalParams -ErrorAction Stop } | Should not throw 'Unable to query Group'
     }
 }
 
