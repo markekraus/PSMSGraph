@@ -3,12 +3,13 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/14/2017 6:08 AM
+     Edited On:     2/23/2017
 	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
+	 Organization: 	
 	 Filename:     	Get-AADGroupById.ps1
 	===========================================================================
 	.DESCRIPTION
-		A description of the file.
+		Get-AADGroupById Function
 #>
 
 <#
@@ -101,7 +102,7 @@ function Get-AADGroupByID {
             }
             catch {
                 $ErrorMessage = "Unable to query Group '{0}': {1}" -f $GroupId, $_.Exception.Message
-                Write-Error $ErrorMessage
+                Write-Error -Message $ErrorMessage -Exception $_.Exception
                 return
             }
             $OutputObject = $Result.ContentObject.psobject.copy()
