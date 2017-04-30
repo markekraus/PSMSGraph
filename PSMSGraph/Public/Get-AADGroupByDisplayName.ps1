@@ -3,8 +3,9 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/14/2017 5:53 AM
+     Edited on:     4/22/2017
 	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
+	 Organization: 	
 	 Filename:     	Get-AADGroupByDisplayName.ps1
 	===========================================================================
 	.DESCRIPTION
@@ -13,29 +14,40 @@
 
 <#
     .SYNOPSIS
-        Retrieves an Azure AD Group by the Display name
+        Retrieves an Azure AD Group by the provided Display name
     
     .DESCRIPTION
-        Retrieves an Azure AD Group by the Display Name
+        Searches Azure Active Directory Graph API for a Group by the provided display name. 
+        The provided displayname must be a full case-insensitive match. Partial matches and
+        wildcards are not supported. A MSGraphAPI.DirectoryObject.Group object will be
+        returned for the matching group.
+
+        Get-AADGroupByDisplayName requires a MSGraphAPI.Oauth.AccessToken issued for the 
+        https://graph.windows.net resource. See the Get-GraphOauthAccessToken help for
+        more information.
+
+        Get-Help -Name Get-GraphOauthAccessToken -Parameter Resource
     
     .PARAMETER AccessToken
         MSGraphAPI.Oauth.AccessToken object obtained from Get-GraphOauthAccessToken.
+        Access Token must be issued for the https://graph.windows.net resource.
     
     .PARAMETER DisplayName
-        The Group's Display Name. This must be an exact match and does not support wildcards
+        The Group's Display Name. This must be an exact case-insensitive match and does not 
+        support wildcards or partial matches.
 
     .PARAMETER BaseURL
         The Azure AD Graph Base URL. This is not required. Deafult 
             https://graph.windows.net
 
     .PARAMETER APIVersion
-        version og the API to use. Default is 1.6
+        Version of the API to use. Default is 1.6
     
     .EXAMPLE
         PS C:\> $AADGroup = Get-AADGroupByDisplayName -AccessToken $GraphAccessToken -DisplayName 'Adataum Finance'
     
     .OUTPUTS
-        MSGraphAPI.DirectoryObject.ServicePrincipal
+       MSGraphAPI.DirectoryObject.Group
 
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName    
@@ -45,6 +57,15 @@
 
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken
+
+    .LINK
+        https://msdn.microsoft.com/en-us/library/azure/ad/graph/api/groups-operations
+    
+    .LINK
+        https://msdn.microsoft.com/en-us/library/azure/ad/graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options#filter
 #>
 function Get-AADGroupByDisplayName {
     [CmdletBinding(SupportsShouldProcess = $true,
@@ -101,8 +122,8 @@ function Get-AADGroupByDisplayName {
                 $Result = Invoke-GraphRequest @Params
             }
             catch {
-                $ErrorMessage = "Unable to query User '{0}': {1}" -f $UserId, $_.Exception.Message
-                Write-Error $ErrorMessage
+                $ErrorMessage = "Unable to query Group '{0}': {1}" -f $GroupName, $_.Exception.Message
+                Write-Error -Message $ErrorMessage -Exception $_.Exception
                 return
             }
             foreach ($ServiceObject in $Result.ContentObject.value) {

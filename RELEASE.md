@@ -1,32 +1,39 @@
-# Version 1.0.25.42 (2017-04-22)
 ## Functions
-### Get-GraphOauthAccessToken
-* Revised Invoke-WebRequest error handling. Now uses ```MSGraphAPI.Oauth.Exception``` to handle formating
-* Simplified error handling for JSON parsing
-* Revamped credential object creation for readbility.
-* Clean up debug code
+### Get-AADGroupByDisplayName
+* Fix error message to say Group instead of uuser and actually put the group name in the error
+* ```Write-Error``` now includes original exception with error message
 
-## Types
-### MSGraphAPI.Oauth.Exception
-* Added the ```MSGraphAPI.Oauth.Exception``` type to handle OAuth related ```Invoke-Webrequest``` Exceptions
-* New ScriptMethod JSONResponse converts the response stream from the ```Invoke-WebRequest``` exception from JSON to PSObject
+### Get-AADGroupById
+* ```Write-Error``` now includes original exception with error message
 
-## Test
-### Get-GraphOauthAccessToken.Unit.Tests.ps1
-* Added missing code coverage for ```Invoke-webRequest``` error handling
-* Add missing code coverage for JSON parsing error handling
-* Now at 100% code coverage for ```Get-GraphOauthAccessToken```!
+## Tests
+### Get-AADGroupByDisplayName.Unit.Tests.ps1
+* Added missing code coverage for ```Invoke-GrapRequest``` error handling
+* Now has 100% code coverage for ```Get-AADGroupByDisplayName```
 
-## Built Toolds
-### psake.ps1
-* Adjust recommit logic in PostDeploy task
-* Added ```!forcrecommit``` to override default ignores if needed
-* Added ```devlop``` to ignored branch for recommits as constant work in the develop branch leads to staging issues.
-* Added comment based help file header.
+### Get-AADGroupById.Unit.Tests.ps1
+* Added missing code coverage for ```Invoke-GrapRequest``` error handling
+* Now has 100% code coverage for ```Get-AADGroupById```
 
 ## Documentation
-### Get-GraphOauthAccessToken
-* Modifyed Description to something useful
-* adjusted formating on ```Resource``` parameter
-* Added ```Get-GraphOauthAuthorizationCode``` to Notes
-* Added ```Get-GraphOauthAuthorizationCode``` to Links
+### Get-AADGroupByDisplayName
+* Re-worded synopsis
+* Add more helpful description
+* Added clarity about the required reource for Access Tokens
+* Fix typo in ```APIVersion``` parameter
+* Corrected Output to reflect the correct object type
+* Added the following links:
+    + ```Get-GraphOauthAccessToken```
+    + MSDN AAD Graph Group Operations
+    + MSDN AAD Graph Filter parameter
+
+### Get-AADGroupById
+* Re-worded synopsis
+* Add more helpful description
+* Added clarity about the required reource for Access Tokens
+* Added clarity on what ObjectID is required
+* Fixed typo in ```APIVersion``` parameter
+* Added the following links:
+    + ```Get-GraphOauthAccessToken```
+    + MSDN AAD Graph Group Operations
+    + MSDN AAD Graph Filter parameter

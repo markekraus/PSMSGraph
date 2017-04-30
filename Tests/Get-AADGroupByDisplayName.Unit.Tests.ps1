@@ -3,7 +3,7 @@
 	===========================================================================
 	 Created with: 	VSCode
 	 Created on:   	4/11/2017 04:40 AM
-     Edited on:     
+     Edited on:     4/22/2017
 	 Created by:   	Mark Kraus
 	 Organization: 	
 	 Filename:     	Get-AADGroupByDisplayName.Unit.Tests.ps1
@@ -70,11 +70,18 @@ $VerifyUrl = @(
      '/groups'
      '?api-version=1.6'
      '&$filter=displayName+eq+%27Marketing%27'
-     
+) -Join ''
+$VerifyBadUrl = @(
+     'https://graph.windows.net/'
+     $AppParams.Tenant
+     '/groups'
+     '?api-version=1.6'
+     '&$filter=displayName+eq+%27BadGroup%27'
 ) -Join ''
 
 $ValidUrls = @(
     $VerifyUrl
+    $VerifyBadUrl
 )
 # https://msdn.microsoft.com/en-us/library/azure/ad/graph/api/groups-operations
 $Global:AADGroupJSON = @'
@@ -110,6 +117,9 @@ Describe $Command -Tags Unit {
         }
         return $MockResponse
     }
+    Mock -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $ValidUrls[1]} -MockWith {
+        Throw 'invalid group'
+    }
     It 'Does not have errors when passed required parameters' {
         $LocalParams = $Params.psobject.Copy()
         { & $Command @LocalParams -ErrorAction Stop } | Should not throw
@@ -133,6 +143,11 @@ Describe $Command -Tags Unit {
         $LocalParams = $Params.psobject.Copy()
         $Object = & $Command @LocalParams | Select-Object -First 1
         $Object._AccessToken.GUID | should be $Token.GUID
+    }
+    It 'Provides friendly errors' {
+         $LocalParams = $Params.psobject.Copy()
+         $LocalParams.DisplayName = 'BadGroup'
+        { & $Command @LocalParams -ErrorAction Stop } | Should not throw 'Unable to query Group'
     }
 }
 

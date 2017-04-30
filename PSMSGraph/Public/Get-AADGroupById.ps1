@@ -3,39 +3,53 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/14/2017 6:08 AM
+     Edited On:     2/23/2017
 	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
+	 Organization: 	
 	 Filename:     	Get-AADGroupById.ps1
 	===========================================================================
 	.DESCRIPTION
-		A description of the file.
+		Get-AADGroupById Function
 #>
 
 <#
     .SYNOPSIS
-        Retrieves an Azure AD Group by their Object ID
+        Retrieves an Azure AD Group by hte provided Object ID
     
     .DESCRIPTION
-        Retrieves an Azure AD Group by their Object ID
+        Searches Azure Active Directory Graph API for a Group by the provided Object ID. 
+        The provided Object ID must be a full case-insensitive match. Partial matches and
+        wildcards are not supported. The Object ID is the Azure AD Object ID and not the
+        ObjectGUID synced from an On-prem AD. A MSGraphAPI.DirectoryObject.Group object will 
+        be returned for the matching group.
+
+        Get-AADGroupById requires a MSGraphAPI.Oauth.AccessToken issued for the 
+        https://graph.windows.net resource. See the Get-GraphOauthAccessToken help for
+        more information.
+
+        Get-Help -Name Get-GraphOauthAccessToken -Parameter Resource
     
     .PARAMETER AccessToken
         MSGraphAPI.Oauth.AccessToken object obtained from Get-GraphOauthAccessToken.
+        Access Token must be issued for the https://graph.windows.net resource.
     
     .PARAMETER ObjectId
-        The group's ObjectID e.g d377e755-9365-400f-ab42-c0bf278c386e
+        The group's Azure AD ObjectID e.g d377e755-9365-400f-ab42-c0bf278c386e
+        This is not the ObjectGUID synced from an On-prem AD
 
     .PARAMETER BaseURL
         The Azure AD Graph Base URL. This is not required. Deafult 
             https://graph.windows.net
 
     .PARAMETER APIVersion
-        version og the API to use. Default is 1.6
+        Version of the API to use. Default is 1.6
     
     .EXAMPLE
         PS C:\> $AADGroup = Get-AADGroupByID -AccessToken $GraphAccessToken -ObjectID d377e755-9365-400f-ab42-c0bf278c386e
     
     .OUTPUTS
         MSGraphAPI.DirectoryObject.Group
+
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID
     
@@ -43,7 +57,16 @@
         http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember
 
     .LINK
-        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName   
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByDisplayName
+
+    .LINK
+        http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken
+
+    .LINK
+        https://msdn.microsoft.com/en-us/library/azure/ad/graph/api/groups-operations
+    
+    .LINK
+        https://msdn.microsoft.com/en-us/library/azure/ad/graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options#filter 
 #>
 function Get-AADGroupByID {
     [CmdletBinding(SupportsShouldProcess = $true,
@@ -101,7 +124,7 @@ function Get-AADGroupByID {
             }
             catch {
                 $ErrorMessage = "Unable to query Group '{0}': {1}" -f $GroupId, $_.Exception.Message
-                Write-Error $ErrorMessage
+                Write-Error -Message $ErrorMessage -Exception $_.Exception
                 return
             }
             $OutputObject = $Result.ContentObject.psobject.copy()
