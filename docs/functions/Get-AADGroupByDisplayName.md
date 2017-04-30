@@ -1,7 +1,7 @@
 # Get-AADGroupByDisplayName
 
 ## SYNOPSIS
-Retrieves an Azure AD Group by the Display name
+Retrieves an Azure AD Group by the provided Display name
 
 ## SYNTAX
 
@@ -11,7 +11,19 @@ Get-AADGroupByDisplayName [-AccessToken] <Object> [-DisplayName] <String[]> [[-B
 ```
 
 ## DESCRIPTION
-Retrieves an Azure AD Group by the Display Name
+Searches Azure Active Directory Graph API for a Group by the provided display name. 
+The provided displayname must be a full case-insensitive match.
+Partial matches and
+wildcards are not supported.
+A MSGraphAPI.DirectoryObject.Group object will be
+returned for the matching group.
+
+Get-AADGroupByDisplayName requires a MSGraphAPI.Oauth.AccessToken issued for the 
+https://graph.windows.net resource.
+See the Get-GraphOauthAccessToken help for
+more information.
+
+Get-Help -Name Get-GraphOauthAccessToken -Parameter Resource
 
 ## EXAMPLES
 
@@ -24,6 +36,7 @@ $AADGroup = Get-AADGroupByDisplayName -AccessToken $GraphAccessToken -DisplayNam
 
 ### -AccessToken
 MSGraphAPI.Oauth.AccessToken object obtained from Get-GraphOauthAccessToken.
+Access Token must be issued for the https://graph.windows.net resource.
 
 ```yaml
 Type: Object
@@ -39,7 +52,8 @@ Accept wildcard characters: False
 
 ### -DisplayName
 The Group's Display Name.
-This must be an exact match and does not support wildcards
+This must be an exact case-insensitive match and does not 
+support wildcards or partial matches.
 
 ```yaml
 Type: String[]
@@ -72,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -APIversion
-version og the API to use.
+Version of the API to use.
 Default is 1.6
 
 ```yaml
@@ -122,7 +136,7 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### MSGraphAPI.DirectoryObject.ServicePrincipal
+### MSGraphAPI.DirectoryObject.Group
 
 ## NOTES
 
@@ -133,4 +147,10 @@ Accept wildcard characters: False
 [http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupMember)
 
 [http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID](http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADGroupByID)
+
+[http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken](http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken)
+
+[https://msdn.microsoft.com/en-us/library/azure/ad/graph/api/groups-operations](https://msdn.microsoft.com/en-us/library/azure/ad/graph/api/groups-operations)
+
+[https://msdn.microsoft.com/en-us/library/azure/ad/graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options#filter](https://msdn.microsoft.com/en-us/library/azure/ad/graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options#filter)
 

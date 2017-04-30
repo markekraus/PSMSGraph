@@ -1,3 +1,4 @@
+# Version 1.0.26.43 (2017-04-30)
 ## Functions
 ### Get-AADGroupByDisplayName
 * Fix error message to say Group instead of uuser and actually put the group name in the error
