@@ -3,9 +3,10 @@
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
 	 Created on:   	2/8/2017 8:48 AM
-     Edited on:     2/27/2017
-	 Created by:   	Mark Kraus
+     Edited on:     8/28/2018
+     Created by:   	Mark Kraus
 	 Organization: 	Mitel
+     Modified by:   Mark Domansky
 	 Filename:     	Get-GraphOauthAuthorizationCode.ps1
 	===========================================================================
 	.DESCRIPTION
@@ -27,6 +28,12 @@
         
             https://login.microsoftonline.com/common/oauth2/authorize 
     
+    .PARAMETER ForcePrompt
+        Ignore existing cached authentications and force appropriate authentication prompt.  This is not usually needed.
+        Accepted Values: none=prefer existing login, login=force login prompt, consent=force user consent, admin_consent=force admin user consent
+        For ADFS federated login, see https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/operations/ad-fs-prompt-login
+        For additional information on the OAuth flow and values, see https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-implicit-grant-flow
+        
     .EXAMPLE
         		PS C:\> $GraphAuthCode = Get-GraphOauthAuthorizationCode -Application $GraphApp
     
@@ -58,18 +65,26 @@ function Get-GraphOauthAuthorizationCode {
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
         [Alias('URL')]
-        [string]$BaseURL = 'https://login.microsoftonline.com/common/oauth2/authorize'
+        [string]$BaseURL = 'https://login.microsoftonline.com/common/oauth2/authorize',
+
+        [Parameter(Mandatory = $false,
+                   ValueFromPipelineByPropertyName = $true)]
+                   [ValidateNotNullOrEmpty()]
+                   [ValidateSet('none','login','consent','admin_consent')]
+        [string]$ForcePrompt
     )
     Process {
         if (-not $pscmdlet.ShouldProcess($Application.ClientID)) {
             return
         }
+        if ($PSBoundParameters.ContainsKey('ForcePrompt')) {$ForcePrompt_Uri = "&prompt=$ForcePrompt"}
         $Client_Id = [System.Web.HttpUtility]::UrlEncode($Application.ClientId)
         $Redirect_Uri = [System.Web.HttpUtility]::UrlEncode($Application.RedirectUri)
-        $Url = "{0}?response_type=code&redirect_uri={1}&client_id={2}" -f @(
+        $Url = "{0}?response_type=code&redirect_uri={1}&client_id={2}{3}" -f @(
             $BaseURL
             $Redirect_Uri
             $Client_Id
+            $ForcePrompt_Uri
         )
         Write-Verbose "URL: '$URL'"
         $Params = @{
