@@ -78,7 +78,8 @@ function Export-GraphApplication {
                    Mandatory = $true,
                    ValueFromRemainingArguments = $true)]
         [ValidateNotNullOrEmpty()]
-        [string]$LiterlPath,
+        [Alias('LiterlPath')]
+        [string]$LiteralPath,
 
         [Parameter(ParameterSetName = 'LiteralPath',
                    Mandatory = $false,
@@ -104,7 +105,7 @@ function Export-GraphApplication {
 
     Process {
         $ExportProperties = $Application.psobject.Properties.where({ $_.MemberType -ne 'ScriptProperty' }).Name
-        Write-Verbose "Propertes: $($ExportProperties -join ' ')"
+        Write-Verbose "Properties: $($ExportProperties -join ' ')"
         $ExportApplication = $Application | Select-Object -Property $ExportProperties
         switch ($PsCmdlet.ParameterSetName) {
             'Path' {
@@ -118,13 +119,13 @@ function Export-GraphApplication {
             'LiteralPath' {
                 $Params = @{
                     Encoding = $Encoding
-                    LiteralPath = $LiterlPath
+                    LiteralPath = $LiteralPath
                     InputObject = $ExportApplication
                 }
                 $Target = $LiteralPath
             }
         }
-        if ($pscmdlet.ShouldProcess("Target")) {
+        if ($pscmdlet.ShouldProcess($Target)) {
             Export-Clixml @Params
         }
     }
