@@ -147,7 +147,8 @@ Describe $Command -Tags Unit {
     It 'Provides friendly errors' {
          $LocalParams = $Params.psobject.Copy()
          $LocalParams.ObjectId = 'BadGroupId'
-        { & $Command @LocalParams -ErrorAction Stop } | Should not throw 'Unable to query Group'
+         Try { & $Command @LocalParams -ErrorAction Stop } catch {$Result = $_} 
+         $Result.ErrorDetails.Message | Should match 'Unable to query Group'
     }
 }
 
