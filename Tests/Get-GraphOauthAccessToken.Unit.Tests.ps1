@@ -1,15 +1,15 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	VSCode
-	 Created on:   	4/13/2017 04:25 AM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	VSCode
+     Created on:   	4/13/2017 04:25 AM
      Edited on:     4/22/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	
-	 Filename:     	Get-GraphOauthAccessToken.Unit.Tests.ps1
-	===========================================================================
-	.DESCRIPTION
-		Unit Tests for Get-GraphOauthAccessToken
+     Created by:   	Mark Kraus
+     Organization:
+     Filename:     	Get-GraphOauthAccessToken.Unit.Tests.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Unit Tests for Get-GraphOauthAccessToken
 #>
 
 $projectRoot = Resolve-Path "$PSScriptRoot\.."
@@ -82,7 +82,7 @@ $VerifyBody = @(
      '&redirect_uri=https%3a%2f%2flocalhost'
      '&client_id=12345'
      '&code=67890'
-     '&resource=https%3a%2f%2fgraph.microsoft.com' 
+     '&resource=https%3a%2f%2fgraph.microsoft.com'
      '&client_secret=54321'
 ) -Join ''
 $VerifyBadBody = @(
@@ -90,7 +90,7 @@ $VerifyBadBody = @(
      '&redirect_uri=https%3a%2f%2flocalhost'
      '&client_id=12345'
      '&code=09876'
-     '&resource=https%3a%2f%2fgraph.microsoft.com' 
+     '&resource=https%3a%2f%2fgraph.microsoft.com'
      '&client_secret=54321'
 ) -Join ''
 $VerifyBadJSONBody = @(
@@ -98,7 +98,7 @@ $VerifyBadJSONBody = @(
      '&redirect_uri=https%3a%2f%2flocalhost'
      '&client_id=12345'
      '&code=54321'
-     '&resource=https%3a%2f%2fgraph.microsoft.com' 
+     '&resource=https%3a%2f%2fgraph.microsoft.com'
      '&client_secret=54321'
 ) -Join ''
 $ValidBodies = @(
@@ -107,7 +107,7 @@ $ValidBodies = @(
     $VerifyBadJSONBody
 )
 
-$JWT = @( 
+$JWT = @(
     'eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJhdWQiOiJlMmFkOTE4ZS1kYzg3L'
     'TRjMjMtODAzYy1lNjdlNDNlMGYyMTciLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3'
     'dzLm5ldC84ZjUyYmM4YS1jNDZmLTRlYzQtYjM4MC1hZjdlYTQ0YWE5OTcvIiwiaWF'
@@ -123,9 +123,9 @@ $JWT = @(
     'X09YLURidnZGeXdrM1pSZERzQlpaIiwidmVyIjoiMS4wIn0.'
 ) -join ''
 $Scopes = @(
-    "Calendars.Read Calendars.Read.Shared Contacts.Read Contacts.Read.Shared" 
-    "Directory.Read.All Files.Read Files.Read.All Files.Read.Selected" 
-    "Group.Read.All IdentityRiskEvent.Read.All Mail.Read Mail.Read.Shared" 
+    "Calendars.Read Calendars.Read.Shared Contacts.Read Contacts.Read.Shared"
+    "Directory.Read.All Files.Read Files.Read.All Files.Read.Selected"
+    "Group.Read.All IdentityRiskEvent.Read.All Mail.Read Mail.Read.Shared"
     "Notes.Read Notes.Read.All People.Read Sites.Read.All Tasks.Read"
     "User.Read User.Read.All User.ReadBasic.All"
 ) -Join ' '
@@ -153,20 +153,20 @@ $Global:ResponseHeaders = @{
     'Content-Type'              = 'application/json; charset=utf-8'
     'Expires'                   = '-1'
     'P3P'                       = 'CP="DSP CUR OTPi IND OTRi ONL FIN"'
-    'Set-Cookie'                = @('esctx=AQABAAAAAABnfiG;' 
+    'Set-Cookie'                = @('esctx=AQABAAAAAABnfiG;'
                                     'domain=.login.microsoftonline.com;'
                                     'path=/;'
-                                    'secure;' 
-                                    'HttpOnly,x-ms-gateway-slice=006;' 
-                                    'path=/;' 
-                                    'secure;' 
-                                    'HttpOnly,stsservicecookie=ests;' 
-                                    'path=/;' 
-                                    'secure;' 
+                                    'secure;'
+                                    'HttpOnly,x-ms-gateway-slice=006;'
+                                    'path=/;'
+                                    'secure;'
+                                    'HttpOnly,stsservicecookie=ests;'
+                                    'path=/;'
+                                    'secure;'
                                     'HttpOnly') -Join ' '
     'Server'                    = 'Microsoft-IIS/8.5'
     'X-Powered-By'              = 'ASP.NET'
-    'Date'                      = Get-Date  
+    'Date'                      = Get-Date
     'Content-Length'            = $Global:JSONResponse.Length
 }
 
@@ -178,7 +178,7 @@ Describe $Command -Tags Unit {
     Mock -CommandName Invoke-WebRequest -ModuleName PSMSGraph -ParameterFilter {$Body -eq $ValidBodies[0]} -MockWith {
         $MockResponse = [pscustomobject]@{
             Content = $Global:JSONResponse
-            Headers = $Global:ResponseHeaders 
+            Headers = $Global:ResponseHeaders
         }
         return $MockResponse
     }
@@ -197,7 +197,7 @@ Describe $Command -Tags Unit {
     Mock -CommandName Invoke-WebRequest -ModuleName PSMSGraph -ParameterFilter {$Body -eq $ValidBodies[2]} -MockWith {
         $MockResponse = [pscustomobject]@{
             Content = 'This is bad JSON'
-            Headers = $Global:ResponseHeaders 
+            Headers = $Global:ResponseHeaders
         }
         return $MockResponse
     }
@@ -224,18 +224,18 @@ Describe $Command -Tags Unit {
         $LocalParams = $Params.psobject.Copy()
         $LocalParams.AuthenticationCode = $BadAuthCode
         Try{
-            & $Command @LocalParams -ErrorAction Stop 
+            & $Command @LocalParams -ErrorAction Stop
         }
         Catch{
             $Exception = $_
-        } 
-        $Exception.Exception.psobject.typenames -contains 'MSGraphAPI.Oauth.Exception' | should be $true        
+        }
+        $Exception.Exception.psobject.typenames -contains 'MSGraphAPI.Oauth.Exception' | should be $true
     }
     It "Throws an exception on JSON parse erros." {
         $LocalParams = $Params.psobject.Copy()
         $LocalParams.AuthenticationCode = $BadJSONAuthCode
         { & $Command @LocalParams -ErrorAction Stop } | should throw 'Invalid JSON'
-    }    
+    }
 }
 Remove-Variable -Scope Global -Name ResponseHeaders
 Remove-Variable -Scope Global -Name JSONResponse
