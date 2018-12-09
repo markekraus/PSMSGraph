@@ -22,7 +22,7 @@
     .PARAMETER Path
         Specifies the path to the file where the XML representation of the Graph Application object will be stored
 
-    .PARAMETER LiterlPath
+    .PARAMETER LiteralPath
         Specifies the path to the file where the XML representation of the Graph Application object will be stored. Unlike Path, the value of the LiteralPath parameter is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.
 
     .PARAMETER Encoding
