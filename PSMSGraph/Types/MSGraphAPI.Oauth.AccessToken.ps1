@@ -20,7 +20,9 @@
         'LastRequestDate'
         'IsExpired'
         'Expires'
+        'ExpiresUTC'
         'NotBefore'
+        'NotBeforeUTC'
         'Scope'
         'Resource'
         'IsRefreshable'
@@ -69,8 +71,15 @@
             MemberType = 'ScriptProperty'
             MemberName = 'Expires'
             Value = {
+                $This.ExpiresUTC.ToLocalTime()
+            }
+        }
+        @{
+            MemberType = 'ScriptProperty'
+            MemberName = 'ExpiresUTC'
+            Value = {
                 if ($This.Response.expires_on) {
-                    (get-date '1970/01/01 -0').AddSeconds($This.Response.expires_on)
+                    (get-date '1970/01/01 -0').ToUniversalTime().AddSeconds($This.Response.expires_on)
                 }
                 else {
                     [DateTime]::MinValue
@@ -79,10 +88,10 @@
         }
         @{
             MemberType = 'ScriptProperty'
-            MemberName = 'NotBefore'
+            MemberName = 'NotBeforeUTC'
             Value = {
                 if ($This.Response.not_before) {
-                    (get-date '1970/01/01 -0').AddSeconds($This.Response.not_before)
+                    (get-date '1970/01/01 -0').ToUniversalTime().AddSeconds($This.Response.not_before)
                 }
                 else {
                     [DateTime]::MaxValue
@@ -91,9 +100,16 @@
         }
         @{
             MemberType = 'ScriptProperty'
+            MemberName = 'NotBefore'
+            Value = {
+                $This.NotBeforeUTC.ToLocalTime()
+            }
+        }
+        @{
+            MemberType = 'ScriptProperty'
             MemberName = 'IsExpired'
             Value = {
-                $(get-date) -ge $this.Expires
+                $(get-date).ToUniversalTime() -ge $this.ExpiresUTC
             }
         }
         @{
