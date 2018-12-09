@@ -1,14 +1,14 @@
-<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	VSCode
-	 Created on:   	4/4/2017 04:35 AM
-	 Created by:   	Mark Kraus
-	 Organization: 	
-	 Filename:     	Import-GraphOauthAccessToken.Unit.Tests.ps1
-	===========================================================================
-	.DESCRIPTION
-		Unit Tests for Import-GraphOauthAccessToken
+<#
+    .NOTES
+    ===========================================================================
+     Created with: 	VSCode
+     Created on:   	4/4/2017 04:35 AM
+     Created by:   	Mark Kraus
+     Organization:
+     Filename:     	Import-GraphOauthAccessToken.Unit.Tests.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Unit Tests for Import-GraphOauthAccessToken
 #>
 
 $projectRoot = Resolve-Path "$PSScriptRoot\.."

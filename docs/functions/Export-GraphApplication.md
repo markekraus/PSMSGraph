@@ -12,7 +12,7 @@ Export-GraphApplication -Path <String> [-Encoding <String>] -Application <PSObje
 
 ### LiteralPath
 ```
-Export-GraphApplication -LiterlPath <String> [-Encoding <String>] -Application <PSObject> [-WhatIf] [-Confirm]
+Export-GraphApplication -LiteralPath <String> [-Encoding <String>] -Application <PSObject> [-WhatIf] [-Confirm]
 ```
 
 ## DESCRIPTION
@@ -42,7 +42,7 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -LiterlPath
+### -LiteralPath
 Specifies the path to the file where the XML representation of the Graph Application object will be stored.
 Unlike Path, the value of the LiteralPath parameter is used exactly as it is typed.
 No characters are interpreted as wildcards.

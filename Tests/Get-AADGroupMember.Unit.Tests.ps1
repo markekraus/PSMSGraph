@@ -1,15 +1,15 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	VSCode
-	 Created on:   	4/2/2017 10:27 AM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	VSCode
+     Created on:   	4/2/2017 10:27 AM
      Edited on:     4/4/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	
-	 Filename:     	Get-AADGroupMember.Unit.Tests.ps1
-	===========================================================================
-	.DESCRIPTION
-		Unit Tests for Get-AADGroupMember
+     Created by:   	Mark Kraus
+     Organization:
+     Filename:     	Get-AADGroupMember.Unit.Tests.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Unit Tests for Get-AADGroupMember
 #>
 
 $projectRoot = Resolve-Path "$PSScriptRoot\.."
@@ -187,9 +187,9 @@ Describe $Command -Tags Unit {
         { & $Command @LocalParams -ErrorAction Stop } | Should not throw
     }
     It "Called page1" {
-        Assert-MockCalled -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $VerifyUrlMultiPage1} 
+        Assert-MockCalled -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $VerifyUrlMultiPage1}
     }
     It "Called page2" {
-        Assert-MockCalled -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $VerifyUrlMultiPage2} 
+        Assert-MockCalled -CommandName Invoke-GraphRequest -ModuleName PSMSGraph -ParameterFilter {$Uri -eq $VerifyUrlMultiPage2}
     }
 }

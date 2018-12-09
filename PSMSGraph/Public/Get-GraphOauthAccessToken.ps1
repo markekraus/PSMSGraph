@@ -1,48 +1,48 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/8/2017 10:26 AM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/8/2017 10:26 AM
      Edited on::    4/22/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	
-	 Filename:     	Get-GraphOauthAccessToken.ps1
-	===========================================================================
-	.DESCRIPTION
-		Get-GraphOauthAccessToken Function
+     Created by:   	Mark Kraus
+     Organization:
+     Filename:     	Get-GraphOauthAccessToken.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Get-GraphOauthAccessToken Function
 #>
 
 <#
     .SYNOPSIS
         Retieves an OAuth Access Token from Microsoft
-    
+
     .DESCRIPTION
         Takes an OAuth Acces Authorization code returned from Get-GraphOauthAuthorizationCode and
         requests an OAuth Access Token for the provided resource from Microsoft. A
         MSGraphAPI.Oauth.AccessToken object is returned. This object is required for making calls
         to Invoke-GraphRequest and many other functions provided by this module.
 
-    
+
     .PARAMETER AuthenticationCode
         The Authentication Code returned from Get-GraphOauthAuthorizationCode
-    
+
     .PARAMETER BaseURL
         The Base URL used for retrieving OAuth Acces Tokens. This is not required. the default is
-        
+
         https://login.microsoftonline.com/common/oauth2/token
-    
+
     .PARAMETER Resource
         The resource for which the OAuth Access token will be requested. The default is
-        
+
             https://graph.microsoft.com
-    
+
         You must set the resource to match the endpoints your token will be valid for.
 
             Microsft Graph:              https://graph.microsoft.com
             Azure AD Graph API:          https://graph.windows.net
             Office 365 Unified Mail API: https://outlook.office.com
-        
-        If you need to access more than one resrouce, you will need to request multiple OAuth Access 
+
+        If you need to access more than one resrouce, you will need to request multiple OAuth Access
         Tokens and use the correct tokens for the correct endpoints.
 
     .EXAMPLE
@@ -55,18 +55,18 @@
         UserAgent = 'Windows:PowerShell:GraphApplication'
         }
         PS C:\> $GraphApp = New-GraphApplication @Params
-        PS C:\> $GraphAuthCode = Get-GraphOauthAuthorizationCode -Application $GraphApp 
+        PS C:\> $GraphAuthCode = Get-GraphOauthAuthorizationCode -Application $GraphApp
         PS C:\> $GraphAccessToken = Get-GraphOauthAccessToken -AuthenticationCode $GraphAuthCode
-    
+
     .OUTPUTS
         MSGraphAPI.Oauth.AccessToken
-    
+
     .NOTES
         See Get-GraphOauthAuthorizationCode for obtaining a OAuth Authorization code.
         See Export-GraphOauthAccessToken for exporting Graph Acess Token Objects
         See Import-GraphOauthAccessToken for importing exported Graph AcessToken Objects
         See Update-GraphOauthAccessToken for refreshing the Graph Access Token
-    
+
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken
     .LINK
@@ -95,17 +95,17 @@ function Get-GraphOauthAccessToken {
         [ValidateNotNullOrEmpty()]
         [Alias('AuthCode')]
         $AuthenticationCode,
-        
+
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
         [Alias('URL')]
         [string]$BaseURL = 'https://login.microsoftonline.com/common/oauth2/token',
-        
+
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
         [string]$Resource = 'https://graph.microsoft.com'
     )
-    
+
     Process {
         $Application = $AuthenticationCode.Application
         if (-not $pscmdlet.ShouldProcess($Application.ClientID)) {
@@ -152,7 +152,7 @@ function Get-GraphOauthAccessToken {
         Catch {
             $Params = @{
                 MemberType = 'NoteProperty'
-                Name = 'Respone' 
+                Name = 'Respone'
                 Value = $Result
             }
             $_.Exception | Add-Member @Params

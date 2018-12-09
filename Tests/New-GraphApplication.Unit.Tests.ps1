@@ -1,14 +1,14 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/27/2017 4:42 AM
-	 Created by:   	Mark Kraus
-	 Organization: 	
-	 Filename:     	
-	===========================================================================
-	.DESCRIPTION
-		Unit Tests for New-GraphApplication
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/27/2017 4:42 AM
+     Created by:   	Mark Kraus
+     Organization:
+     Filename:
+    ===========================================================================
+    .DESCRIPTION
+        Unit Tests for New-GraphApplication
 #>
 
 $projectRoot = Resolve-Path "$PSScriptRoot\.."

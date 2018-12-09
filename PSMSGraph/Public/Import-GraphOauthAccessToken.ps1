@@ -1,44 +1,44 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/9/2017 6:55 AM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/9/2017 6:55 AM
      Edited on:     3/30/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
-	 Filename:     	Import-GraphOauthAccessToken.ps1
-	===========================================================================
-	.DESCRIPTION
-		Import-GraphOauthAccessToken function
+     Created by:   	Mark Kraus
+     Organization: 	Mitel
+     Filename:     	Import-GraphOauthAccessToken.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Import-GraphOauthAccessToken function
 #>
 
 <#
     .SYNOPSIS
         Imports an exported Graph OAuth Access Token Object
-    
+
     .DESCRIPTION
         Imports an exported Graph OAuth Access Token Object and retruns a Graph  OAuth Access Token Object.
-    
+
     .PARAMETER Path
         Specifies the XML files where the Graph Application Object was exported.
-    
+
     .PARAMETER LiteralPath
         Specifies the XML files where the Graph Application Object was exported. Unlike Path, the value of the LiteralPath parameter is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.
-    
+
     .EXAMPLE
         PS C:\> $GraphAccessToken = Import-GraphOAuthAccessToken -Path 'c:\GraphAccessToken.xml'
-    
+
     .NOTES
         See Export-GraphOauthAccessToken for exporting Graph AcessToken Objects
         See Get-GraphOauthAccessToken for obtaining a Graph Access Token from the API
-    
+
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Import-GraphOauthAccessToken
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Export-GraphOauthAccessToken
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Get-GraphOauthAccessToken
-    
+
     .OUTPUTS
         MSGraphAPI.Oauth.AccessToken
 #>
@@ -56,14 +56,14 @@ function Import-GraphOauthAccessToken {
                    ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         [string[]]$Path,
-        
+
         [Parameter(ParameterSetName = 'LiteralPath',
                    Mandatory = $true,
                    ValueFromRemainingArguments = $true)]
         [ValidateNotNullOrEmpty()]
         [string[]]$LiteralPath
     )
-    
+
     Process {
         Switch ($PsCmdlet.ParameterSetName) {
             'Path' {
@@ -108,7 +108,7 @@ function Import-GraphOauthAccessToken {
                 $Session.Proxy = $InObject.Session.Proxy
                 $Session.UseDefaultCredentials = $InObject.Session.UseDefaultCredentials
                 $Session.UserAgent = $Application.UserAgent
-                
+
                 Write-Verbose 'Create Graph Token Object'
                 $Params = @{
                     Application = $Application

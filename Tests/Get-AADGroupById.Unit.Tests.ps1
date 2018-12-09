@@ -1,15 +1,15 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	VSCode
-	 Created on:   	4/11/2017 04:20 AM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	VSCode
+     Created on:   	4/11/2017 04:20 AM
      Edited on:     4/22/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	
-	 Filename:     	Get-AADGroupById.Unit.Tests.ps1
-	===========================================================================
-	.DESCRIPTION
-		Unit Tests for Get-AADGroupById
+     Created by:   	Mark Kraus
+     Organization:
+     Filename:     	Get-AADGroupById.Unit.Tests.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Unit Tests for Get-AADGroupById
 #>
 
 $projectRoot = Resolve-Path "$PSScriptRoot\.."
@@ -147,7 +147,8 @@ Describe $Command -Tags Unit {
     It 'Provides friendly errors' {
          $LocalParams = $Params.psobject.Copy()
          $LocalParams.ObjectId = 'BadGroupId'
-        { & $Command @LocalParams -ErrorAction Stop } | Should not throw 'Unable to query Group'
+         Try { & $Command @LocalParams -ErrorAction Stop } catch {$Result = $_}
+         $Result.ErrorDetails.Message | Should match 'Unable to query Group'
     }
 }
 

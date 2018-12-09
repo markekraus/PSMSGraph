@@ -1,14 +1,14 @@
-<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	VSCode
-	 Created on:   	4/4/2017 04:04 AM
-	 Created by:   	Mark Kraus
-	 Organization: 	
-	 Filename:     	Import-GraphApplication.Unit.Tests.ps1
-	===========================================================================
-	.DESCRIPTION
-		Unit Tests for Import-GraphApplication
+<#
+    .NOTES
+    ===========================================================================
+     Created with: 	VSCode
+     Created on:   	4/4/2017 04:04 AM
+     Created by:   	Mark Kraus
+     Organization:
+     Filename:     	Import-GraphApplication.Unit.Tests.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Unit Tests for Import-GraphApplication
 #>
 
 $projectRoot = Resolve-Path "$PSScriptRoot\.."

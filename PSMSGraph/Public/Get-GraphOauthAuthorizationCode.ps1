@@ -1,35 +1,35 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/8/2017 8:48 AM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/8/2017 8:48 AM
      Edited on:     2/27/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
-	 Filename:     	Get-GraphOauthAuthorizationCode.ps1
-	===========================================================================
-	.DESCRIPTION
-		Get-GraphOauthAuthorizationCode Function
+     Created by:   	Mark Kraus
+     Organization: 	Mitel
+     Filename:     	Get-GraphOauthAuthorizationCode.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Get-GraphOauthAuthorizationCode Function
 #>
 
 <#
     .SYNOPSIS
         Retrieves an OAuth Authorization code form Microsoft
-    
+
     .DESCRIPTION
-        Retrieves an OAuth Authorization code form Microsoft for a given Graph Application. This commandlet requires an interactive session as you will need to provide your credentials and authorize the Graph Application. The OAuth Authorization code will be used to obtain an OAuth Access Token. 
-    
+        Retrieves an OAuth Authorization code form Microsoft for a given Graph Application. This commandlet requires an interactive session as you will need to provide your credentials and authorize the Graph Application. The OAuth Authorization code will be used to obtain an OAuth Access Token.
+
     .PARAMETER Application
         MSGraphAPI.Application object (See New-GraphApplication)
-    
+
     .PARAMETER BaseURL
-        The base URL for obtaining an OAuth Authorization Code form Microsoft. This is provided in the event that a different URL is required. The default is 
-        
-            https://login.microsoftonline.com/common/oauth2/authorize 
-    
+        The base URL for obtaining an OAuth Authorization Code form Microsoft. This is provided in the event that a different URL is required. The default is
+
+            https://login.microsoftonline.com/common/oauth2/authorize
+
     .EXAMPLE
-        		PS C:\> $GraphAuthCode = Get-GraphOauthAuthorizationCode -Application $GraphApp
-    
+                PS C:\> $GraphAuthCode = Get-GraphOauthAuthorizationCode -Application $GraphApp
+
     .OUTPUTS
         MSGraphAPI.Oauth.AuthorizationCode
 
@@ -54,7 +54,7 @@ function Get-GraphOauthAuthorizationCode {
         [ValidateNotNullOrEmpty()]
         [Alias('App')]
         [PSTypeName('MSGraphAPI.Application')]$Application,
-        
+
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
         [Alias('URL')]
@@ -100,7 +100,7 @@ function Get-GraphOauthAuthorizationCode {
         $form.Controls.Add($web)
         $form.Add_Shown({ $form.Activate() })
         [void]$form.ShowDialog()
-        
+
         $QueryOutput = [System.Web.HttpUtility]::ParseQueryString($web.Url.Query)
         $Response = @{ }
         foreach ($key in $queryOutput.Keys) {
