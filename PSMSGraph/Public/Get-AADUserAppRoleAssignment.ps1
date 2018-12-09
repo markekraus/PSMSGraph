@@ -1,36 +1,36 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/14/2017 5:17 AM
-	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
-	 Filename:     	Get-AADUserAppRoleAssignment.ps1
-	===========================================================================
-	.DESCRIPTION
-		Get-AADUserAppRoleAssignment Function
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/14/2017 5:17 AM
+     Created by:   	Mark Kraus
+     Organization: 	Mitel
+     Filename:     	Get-AADUserAppRoleAssignment.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Get-AADUserAppRoleAssignment Function
 #>
 
 <#
     .SYNOPSIS
         Returns the App Role Assigmnets for the given user
-    
+
     .DESCRIPTION
         Returns the App Role Assigmnets for the given user. This can be used to see what applications to which Azure AD SaaS Applications (Service Principals) the user has been assigned access.
-    
+
     .PARAMETER User
         A MSGraphAPI.DirectoryObject.User object retruned by Get-AADUser* cmdlets
-    
+
     .PARAMETER BaseURL
-        The Azure AD Graph Base URL. This is not required. Deafult 
+        The Azure AD Graph Base URL. This is not required. Deafult
             https://graph.windows.net
-    
+
     .PARAMETER APIVersion
         version og the API to use. Default is 1.6
-    
+
     .EXAMPLE
-        PS C:\> $AADAppAssignments = $AADUser | Get-AADUserAppRoleAssignment 
-    
+        PS C:\> $AADAppAssignments = $AADUser | Get-AADUserAppRoleAssignment
+
     .NOTES
         Additional information about the function.
 
@@ -49,15 +49,15 @@ function Get-AADUserAppRoleAssignment {
         [ValidateNotNullOrEmpty()]
         [PSTypeName('MSGraphAPI.DirectoryObject.User')]
         [object[]]$User,
-        
+
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
         [string]$BaseUrl = 'https://graph.windows.net',
-        
+
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [string]$APIVersion = '1.6'
     )
-    
+
     process {
         Foreach ($UserObject in $User) {
             if (-not $pscmdlet.ShouldProcess($UserObject.objectId)) {

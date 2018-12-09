@@ -1,15 +1,15 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	VSCode
-	 Created on:   	4/21/2017 6:51 PM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	VSCode
+     Created on:   	4/21/2017 6:51 PM
      Edited on:     4/21/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	
-	 Filename:     	MSGraphAPI.Oauth.Exception.ps1
-	===========================================================================
-	.DESCRIPTION
-		MSGraphAPI.Oauth.Exception Type Definition
+     Created by:   	Mark Kraus
+     Organization:
+     Filename:     	MSGraphAPI.Oauth.Exception.ps1
+    ===========================================================================
+    .DESCRIPTION
+        MSGraphAPI.Oauth.Exception Type Definition
 #>
 
 @{

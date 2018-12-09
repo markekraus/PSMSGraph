@@ -1,15 +1,15 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/8/2017 2:05 PM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/8/2017 2:05 PM
      Edited on:     2/16/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
-	 Filename:     	MSGraphAPI.Oauth.AccessToken.ps1
-	===========================================================================
-	.DESCRIPTION
-		MSGraphAPI.Oauth.AccessToken Type Definition
+     Created by:   	Mark Kraus
+     Organization: 	Mitel
+     Filename:     	MSGraphAPI.Oauth.AccessToken.ps1
+    ===========================================================================
+    .DESCRIPTION
+        MSGraphAPI.Oauth.AccessToken Type Definition
 #>
 
 @{
@@ -43,7 +43,7 @@
                 }
                 catch {
                     $null
-                }                
+                }
             }
         }
         @{

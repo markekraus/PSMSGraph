@@ -1,40 +1,40 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/13/2017 12:20 PM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/13/2017 12:20 PM
      Last Edited:   2/14/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
-	 Filename:     	Get-AADServicePrinicpalbyDisplayName.ps1
-	===========================================================================
-	.DESCRIPTION
-		Get-AADServicePrinicpalbyDisplayName Function
+     Created by:   	Mark Kraus
+     Organization: 	Mitel
+     Filename:     	Get-AADServicePrinicpalbyDisplayName.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Get-AADServicePrinicpalbyDisplayName Function
 #>
 
 <#
     .SYNOPSIS
         Retrieves an Azure AD ServicePrincipal by the Display name
-    
+
     .DESCRIPTION
         Retrieves an Azure AD ServicePrincipal by the Display Name
-    
+
     .PARAMETER AccessToken
         MSGraphAPI.Oauth.AccessToken object obtained from Get-GraphOauthAccessToken.
-    
+
     .PARAMETER DisplayName
         The ServicePrincipal's Display Name. This must be an exact match and does not support wildcards
 
     .PARAMETER BaseURL
-        The Azure AD Graph Base URL. This is not required. Deafult 
+        The Azure AD Graph Base URL. This is not required. Deafult
             https://graph.windows.net
 
     .PARAMETER APIVersion
         version og the API to use. Default is 1.6
-    
+
     .EXAMPLE
         PS C:\> $AADServicePrincipal = Get-AADServicePrincipalByDisplayName -AccessToken $GraphAccessToken -DisplayName 'Contoso Web App'
-    
+
     .OUTPUTS
         MSGraphAPI.DirectoryObject.ServicePrincipal
 
@@ -52,26 +52,26 @@ function Get-AADServicePrinicpalbyDisplayName {
         [ValidateNotNullOrEmpty()]
         [PSTypeName('MSGraphAPI.Oauth.AccessToken')]
         $AccessToken,
-        
+
         [Parameter(Mandatory = $true,
                    ValueFromPipeline = $true,
                    ValueFromPipelineByPropertyName = $true,
                    ValueFromRemainingArguments = $true)]
         [ValidateNotNullOrEmpty()]
         [string[]]$DisplayName,
-        
+
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         [string]$BaseUrl = 'https://graph.windows.net',
-        
+
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         [string]$APIversion = '1.6'
-        
+
     )
-    
+
     process {
         foreach ($ServiceName in $DisplayName) {
             if (-not $pscmdlet.ShouldProcess($ServiceId)) {
@@ -105,7 +105,7 @@ function Get-AADServicePrinicpalbyDisplayName {
                 $OutputObject.psobject.TypeNames.Insert(0, 'MSGraphAPI.DirectoryObject.ServicePrincipal')
                 $OutputObject | Add-Member -MemberType NoteProperty -Name _AccessToken -Value $AccessToken
                 $OutputObject
-            }            
+            }
         }
     }
 }

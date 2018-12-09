@@ -1,14 +1,14 @@
-﻿<#	
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/8/2017 7:14 AM
+﻿<#
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/8/2017 7:14 AM
      Eedited on:    2/16/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
-	 Filename:     	PSMSGraph.psm1
-	-------------------------------------------------------------------------
-	 Module Name: PSMSGraph
-	===========================================================================
+     Created by:   	Mark Kraus
+     Organization: 	Mitel
+     Filename:     	PSMSGraph.psm1
+    -------------------------------------------------------------------------
+     Module Name: PSMSGraph
+    ===========================================================================
 #>
 
 # Mark's "Poor Man's Classes"
@@ -39,7 +39,7 @@ Foreach ($Type in $Types) {
             MemberName = $ObjectProperty.MemberName
             Value = $ObjectProperty.Value
             ErrorAction = 'SilentlyContinue'
-        }       
+        }
         Update-TypeData @Params
     }
 }

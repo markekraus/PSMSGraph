@@ -1,15 +1,15 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/8/2017 10:19 AM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/8/2017 10:19 AM
      Eedited on:    2/16/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
-	 Filename:     	MSGraphAPI.Oauth.AuthorizationCode.ps1
-	===========================================================================
-	.DESCRIPTION
-		MSGraphAPI.Oauth.AuthorizationCode Type definition
+     Created by:   	Mark Kraus
+     Organization: 	Mitel
+     Filename:     	MSGraphAPI.Oauth.AuthorizationCode.ps1
+    ===========================================================================
+    .DESCRIPTION
+        MSGraphAPI.Oauth.AuthorizationCode Type definition
 #>
 
 @{
@@ -24,7 +24,7 @@
         'Application'
     )
     Properties = @(
-        
+
         @{
             MemberType = 'ScriptProperty'
             MemberName = 'Success'
@@ -58,7 +58,7 @@
                 }
                 catch {
                     $null
-                }                
+                }
             }
         }
     )

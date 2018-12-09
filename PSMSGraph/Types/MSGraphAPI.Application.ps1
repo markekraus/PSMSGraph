@@ -1,15 +1,15 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/8/2017 8:24 AM
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/8/2017 8:24 AM
      Edited on:     2/16/2017
-	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
-	 Filename:     	MSGraphAPI.Application.ps1
-	===========================================================================
-	.DESCRIPTION
-		Contains type definition for MSGraphAPI.Application
+     Created by:   	Mark Kraus
+     Organization: 	Mitel
+     Filename:     	MSGraphAPI.Application.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Contains type definition for MSGraphAPI.Application
 #>
 
 @{
@@ -46,7 +46,7 @@
                 catch {
                     $null
                 }
-                
+
             }
         }
     )

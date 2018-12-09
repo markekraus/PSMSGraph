@@ -1,42 +1,42 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
-	 Created on:   	2/14/2017 6:38 AM
-	 Created by:   	Mark Kraus
-	 Organization: 	Mitel
-	 Filename:     	Get-AADUserAll.ps1
-	===========================================================================
-	.DESCRIPTION
-		Get-AADUserAll Function
+﻿<#
+    .NOTES
+    ===========================================================================
+     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2017 v5.4.135
+     Created on:   	2/14/2017 6:38 AM
+     Created by:   	Mark Kraus
+     Organization: 	Mitel
+     Filename:     	Get-AADUserAll.ps1
+    ===========================================================================
+    .DESCRIPTION
+        Get-AADUserAll Function
 #>
 
 <#
     .SYNOPSIS
         Returns All Azure AD Users
-    
+
     .DESCRIPTION
         Returns All Azure AD Users
-    
+
     .PARAMETER AccessToken
         MSGraphAPI.Oauth.AccessToken object obtained from Get-GraphOauthAccessToken.
-    
+
     .PARAMETER BaseURL
-        The Azure AD Graph Base URL. This is not required. Deafult 
+        The Azure AD Graph Base URL. This is not required. Deafult
             https://graph.windows.net
 
     .PARAMETER Filter
         The Azure AD Graph API $filter to be applied. The string will be url encoded.
-    
+
     .PARAMETER APIVersion
         version of the API to use. Default is 1.6
-    
+
     .EXAMPLE
         PS C:\> $AADUsers = Get-AADUserAll -AccesToken $GraphAccessToken
-    
+
     .OUTPUTS
         MSGraphAPI.DirectoryObject.User
-    
+
     .LINK
         http://psmsgraph.readthedocs.io/en/latest/functions/Get-AADUserAll
 #>
@@ -52,19 +52,19 @@ function Get-AADUserAll {
         [ValidateNotNullOrEmpty()]
         [PSTypeName('MSGraphAPI.Oauth.AccessToken')]
         $AccessToken,
-        
+
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
         [string]$filter,
-        
+
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true)]
         [string]$BaseUrl = 'https://graph.windows.net',
-        
+
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [string]$APIVersion = '1.6'
     )
-    
+
     process {
         if (-not $pscmdlet.ShouldProcess($AccessToken.GUID)) {
             return
