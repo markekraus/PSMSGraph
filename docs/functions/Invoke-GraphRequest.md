@@ -11,7 +11,7 @@ Invoke-GraphRequest [-AccessToken] <Object> [-Uri] <Uri> [[-Method] <WebRequestM
 ```
 
 ## DESCRIPTION
-This is esentially an Invoke-ebRequest wrapper that handles the Access Token lifecycle and Authorization header.
+This is esentially an Invoke-WebRequest wrapper that handles the Access Token lifecycle and Authorization header.
 This requires a valid Access Token in the form of a MSGraphAPI.Oauth.AccessToken and returns a MSGraphAPI.RequestResult Object
 
 ## EXAMPLES
